@@ -1,5 +1,5 @@
-import { Member } from "src/member/member.entity";
-import { Menu } from "src/menu/menu.entity";
+import { Member } from "src/server/member/member.entity";
+import { Menu } from "src/server/menu/menu.entity";
 import { BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
