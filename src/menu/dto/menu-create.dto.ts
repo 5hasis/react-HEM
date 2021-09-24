@@ -8,4 +8,5 @@ export class MenuCreateDto {
 
     member : Member;
     //
+    //
 }
