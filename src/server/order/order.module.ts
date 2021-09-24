@@ -3,7 +3,7 @@ import { OrderService } from './order.service';
 import { OrderController } from './order.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrderRepository } from './order.repository';
-import { MemberModule } from 'src/member/member.module';
+import { MemberModule } from 'src/server/member/member.module';
 
 @Module({
     imports: [
