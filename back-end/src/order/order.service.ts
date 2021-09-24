@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Menu } from 'src/server/menu/menu.entity';
+import { Menu } from 'src/menu/menu.entity';
 import { OrderCreateDto } from './dto/order-create.dto';
 import { Order } from './order.entity';
 import { OrderRepository } from './order.repository';
