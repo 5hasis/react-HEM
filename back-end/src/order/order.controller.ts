@@ -3,7 +3,7 @@ import { OrderService } from './order.service';
 import {OrderCreateDto} from './dto/order-create.dto'
 import { AuthGuard } from '@nestjs/passport';
 import { Order } from './order.entity';
-import { MemberService } from 'src/server/member/member.service';
+import { MemberService } from 'src/member/member.service';
 
 @Controller('order')
 export class OrderController {
