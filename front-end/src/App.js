@@ -7,6 +7,7 @@ import {
 
 import LandingPage from "./components/views/LandingPage/LandingPage";
 
+
 function App() {
   return (
     <Router>
@@ -19,7 +20,10 @@ function App() {
           of them to render at a time
         */}
         <Switch>
-          <Route exact path="/" component={LandingPage  } />
+
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/login" component={LoginPage} />
+
         </Switch>
       </div>
     </Router>
