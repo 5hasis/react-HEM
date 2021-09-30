@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import LandingPage from "./components/views/LandingPage/LandingPage";
-import LoginPage from "./components/views/LoginPage/LoginPage";
+
 
 function App() {
   return (
@@ -20,8 +20,10 @@ function App() {
           of them to render at a time
         */}
         <Switch>
+
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/login" component={LoginPage} />
+
         </Switch>
       </div>
     </Router>
@@ -29,3 +31,4 @@ function App() {
 }
 
 export default App;
+
