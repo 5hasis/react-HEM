@@ -30,9 +30,11 @@ function LoginPage(props){
         dispatch(loginUser(body))
             .then(response => {
                 if (response.payload.accessToken) {
+                    //console.log(response.payload.accessToken)
+                    window.localStorage.setItem('memberId', Id);
                     props.history.push('/')
                 } else {
-                    alert('Error˝')
+                    alert('fail to login!')
                 }
             })
     }
