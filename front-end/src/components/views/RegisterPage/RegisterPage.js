@@ -66,20 +66,18 @@ function RegisterPage(props){
             }
     
             let body={
-                name:Name,
-                phone:Phone,
-                address:Address,
-                id:Id,
-                password:Password
+                memberName:Name,
+                memberPhone:Phone,
+                memberAddress:Address,
+                memberId:Id,
+                memberPw:Password
             }
     
             dispatch(registerUser(body))
             .then(response=>{
-                if(response.payload.success){
-                    props.history.push("/login")
-                }else{
-                    alert("Failed to sign up")
-                }
+                
+                props.history.push("/registerSuccess")
+                
             })
     
             
