@@ -7,7 +7,7 @@ import { Member } from './member.entity';
 import { GetMember } from './get-member.decorator';
 import { AuthGuard } from '@nestjs/passport';
 
-@Controller('member')
+@Controller('/api/member')
 export class MemberController {
     constructor(
         private memberService : MemberService

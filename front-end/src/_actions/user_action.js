@@ -6,7 +6,7 @@ import {
 
 export function loginUser(dataToSubmit) {
 
-    const request = axios.post('/api/member/signin', dataToSubmit)
+    const request = axios.post('/api/user/signin', dataToSubmit)
         .then(response => response.data)
 
     return {
