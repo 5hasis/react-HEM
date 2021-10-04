@@ -24,7 +24,7 @@ function LoginPage(props){
 
         let body = {
             memberId: Id,
-            memberPassword: Password
+            memberPw: Password
         }
 
         dispatch(loginUser(body))
