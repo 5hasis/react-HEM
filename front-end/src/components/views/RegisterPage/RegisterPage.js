@@ -112,7 +112,7 @@ function RegisterPage(props){
             <label>Confirm Password</label>
             <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/>
             <br/>
-            <button type="submit">Sign in</button>
+            <button type="submit">Sign up</button>
             <button onClick={onReset}>Reset</button>
         </form>
     </div>

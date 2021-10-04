@@ -18,7 +18,7 @@ export function loginUser(dataToSubmit) {
 
 export function registerUser(dataToSubmit){
 
-    const request=axios.post('/api/users/register',dataToSubmit)
+    const request=axios.post('/api/member/signup',dataToSubmit)
         .then(response=>response.data)
     return {
         type:REGISTER_USER,
