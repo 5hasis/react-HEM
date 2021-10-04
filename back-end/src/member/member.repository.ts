@@ -6,7 +6,7 @@ import * as bcrypt from 'bcryptjs';
 
 @EntityRepository(Member)
 export class MemberRepository extends Repository<Member> {
-    async createMember(memberCredentialsDto : MemberCredentialsDto) : Promise<void> {
+    async createMember(memberCredentialsDto : MemberCredentialsDto) : Promise<{registerSuccess:boolean}> {
         const { 
             memberId, 
             memberPw, 
@@ -28,6 +28,7 @@ export class MemberRepository extends Repository<Member> {
 
         try{
             await this.save(member);
+            return { registerSuccess:true }
         } catch (error) {
             console.log('error',error);
             if(error.code === '23505') { //console.log 찍어보면 error code : 23505
