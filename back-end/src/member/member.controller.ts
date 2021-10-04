@@ -14,7 +14,7 @@ export class MemberController {
     ){}
 
     @Post('/signup')
-    signUp(@Body(ValidationPipe) memberCredentialsDto : MemberCredentialsDto):Promise<void> {
+    signUp(@Body(ValidationPipe) memberCredentialsDto : MemberCredentialsDto):Promise<{registerSuccess:boolean}> {
         return this.memberService.signUp(memberCredentialsDto);
     }
 

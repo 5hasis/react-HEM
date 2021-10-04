@@ -18,7 +18,7 @@ export class MemberService {
 
 
     //회원가입
-    async signUp(memberCredentialsDto : MemberCredentialsDto) : Promise<void> {
+    async signUp(memberCredentialsDto : MemberCredentialsDto) : Promise<{registerSuccess:boolean}> {
         return this.memberRepository.createMember(memberCredentialsDto);
     }
 
