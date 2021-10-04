@@ -66,20 +66,18 @@ function RegisterPage(props){
             }
     
             let body={
-                name:Name,
-                phone:Phone,
-                address:Address,
-                id:Id,
-                password:Password
+                memberName:Name,
+                memberPhone:Phone,
+                memberAddress:Address,
+                memberId:Id,
+                memberPw:Password
             }
     
             dispatch(registerUser(body))
             .then(response=>{
-                if(response.payload.success){
-                    props.history.push("/login")
-                }else{
-                    alert("Failed to sign up")
-                }
+                
+                props.history.push("/registerSuccess")
+                
             })
     
             
@@ -112,7 +110,7 @@ function RegisterPage(props){
             <label>Confirm Password</label>
             <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/>
             <br/>
-            <button type="submit">Sign in</button>
+            <button type="submit">Sign up</button>
             <button onClick={onReset}>Reset</button>
         </form>
     </div>
