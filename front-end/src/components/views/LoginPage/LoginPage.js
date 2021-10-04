@@ -1,20 +1,52 @@
 import React, { useState } from 'react';
 
-function LoginPage(){
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../../_actions/user_action';
+import { withRouter } from 'react-router-dom';
 
-    const [Email, setEmail] = useState("")
+function LoginPage(props){
+
+    const dispatch = useDispatch();
+
+    const [Id, setId] = useState("")
     const [Password, setPassword] = useState("")
+
+    const onIdHandler = (event) => {
+        setId(event.currentTarget.value)
+    }
+
+    const onPasswordHandler = (event) => {
+        setPassword(event.currentTarget.value)
+    }
+
+    const onSubmitHandler = (event) => {
+        event.preventDefault();
+
+        let body = {
+            memberId: Id,
+            memberPassword: Password
+        }
+
+        dispatch(loginUser(body))
+            .then(response => {
+                if (response.payload.accessToken) {
+                    props.history.push('/')
+                } else {
+                    alert('Error˝')
+                }
+            })
+    }
 
     return (
         <div style={{
             display: 'flex', justifyContent: 'center', alignItems: 'center'
             , width: '100%', height: '100vh'
         }}>
-            <form style={{ display: 'flex', flexDirection: 'column' }}>
-                <label>Email</label>
-                <input type="email" value={Email} />
+            <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler} >
+                <label>Id</label>
+                <input type="text" value={Id} onChange={onIdHandler} />
                 <label>Password</label>
-                <input type="password" value={Password} />
+                <input type="password" value={Password} onChange={onPasswordHandler} />
                 <br />
                 <button type="submit">
                     Login
@@ -24,4 +56,4 @@ function LoginPage(){
     )
 }
 
-export default LoginPage
+export default withRouter(LoginPage)
