@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Button } from 'antd';
+import { Row, Col, Typography, Button } from 'antd';
+
 import Axios from 'axios';
+
+const {Title} = Typography
 
 function LandingPage(){
 
@@ -12,7 +15,7 @@ function LandingPage(){
             .then(response => {
                 if (response.data){
                     console.log(response.data)
-                    //setRestaurants(response.data.restaurants)
+                    setRestaurants(response.data)
                 }
                 else{
                     alert('식당 리스트 출력 실패')
@@ -23,12 +26,12 @@ function LandingPage(){
 
     const renderCards = Restaurants.map((restaurant, index) => {
 
-        
-
         return <Col lg={6} md={8} xs={24} key={index}>
             <a>
-                <div style={{position:'relative'}}>
-                {restaurant.memberName}
+                <div style={{position:'relative', border:'1px'}}>
+                {restaurant.memberName}<br/>
+                {restaurant.memberAddress}
+
                 </div>
             </a>
             <br />
