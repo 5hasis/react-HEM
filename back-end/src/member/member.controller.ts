@@ -23,6 +23,12 @@ export class MemberController {
         return this.memberService.signIn(memberSignInDto);
     }
 
+    @Get('/logout')
+    @UseGuards(AuthGuard())
+    logout():Promise<{accessToken:string}> {
+        return this.memberService.logout();
+    }
+
     @Get('/list')
     getAllMember(): Promise<Member[]> {
         return this.memberService.getAllMember();

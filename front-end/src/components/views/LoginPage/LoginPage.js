@@ -31,7 +31,7 @@ function LoginPage(props){
             .then(response => {
                 if (response.payload.accessToken) {
                     //console.log(response.payload.accessToken)
-                    window.localStorage.setItem('memberId', Id);
+                    window.localStorage.setItem('accessToken', response.payload.accessToken);
                     props.history.push('/')
                 } else {
                     alert('fail to login!')
