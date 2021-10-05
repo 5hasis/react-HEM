@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,Component } from 'react';
 import PopupDom from './PopupDom';
 import PopupPostCode from './PopupPostCode';
 import {useDispatch} from 'react-redux';
