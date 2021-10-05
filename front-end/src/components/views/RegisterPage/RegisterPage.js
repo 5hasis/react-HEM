@@ -74,7 +74,7 @@ function RegisterPage(props){
             let body={
                 memberName:Name,
                 memberPhone:Phone,
-                memberAddress:Address,
+                memberAddress:FirstAddress+Address,
                 memberId:Id,
                 memberPw:Password
             }
