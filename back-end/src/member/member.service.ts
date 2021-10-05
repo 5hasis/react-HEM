@@ -38,6 +38,12 @@ export class MemberService {
         }
     }
 
+    //로그아웃
+    async logout():Promise<{accessToken:string}> {
+        const accessToken = '';
+        return {accessToken : accessToken}
+    }
+
     //회원 리스트
     async getAllMember():Promise <Member[]> {
         const restaurants =  this.memberRepository.find({
