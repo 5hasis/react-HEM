@@ -34,6 +34,7 @@ function RegisterPage(props){
 
         const [Name, setName] = useState("")
         const [Phone, setPhone] = useState("")
+        const [FirstAddress, setFirstAddress] = useState("")
         const [Address, setAddress] = useState("")
         const [Id, setId] = useState("")
         const [Password, setPassword] = useState("")
@@ -45,6 +46,7 @@ function RegisterPage(props){
         const onPhoneHandler=(event)=>{
             setPhone(event.currentTarget.value)
         }
+        
         const onAddressHandler=(event)=>{
             setAddress(event.currentTarget.value)
         }
@@ -58,6 +60,10 @@ function RegisterPage(props){
             setConfirmPassword(event.currentTarget.value)
         }
     
+        const getAddress = (data) => {
+            setFirstAddress(data);
+        }
+
         const onSubmitHandler=(event)=>{
             event.preventDefault();
     
@@ -100,12 +106,12 @@ function RegisterPage(props){
             <div id='popupDom'>
                 {isPopupOpen && (
                     <PopupDom>
-                        <PopupPostCode onClose={closePostCode} />
+                        <PopupPostCode onClose={closePostCode} getAddress={getAddress} />
                     </PopupDom>
                 )}
             </div>
             </div>
-            <input type="text"/>
+            <input type="text" value={FirstAddress} />
             <input type="text" placeholder="Detail Address" value={Address} onChange={onAddressHandler}/>            
             <label>ID</label>
             <input type="text" value={Id} onChange={onIdHandler}/>

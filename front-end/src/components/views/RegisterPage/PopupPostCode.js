@@ -19,6 +19,9 @@ const PopupPostCode = (props) => {
         console.log(data)
         console.log(fullAddress)
         console.log(data.zonecode)
+
+        props.getAddress(data)
+
         props.onClose()
     }
  
@@ -37,6 +40,7 @@ const PopupPostCode = (props) => {
             
             
         </div>
+        
     )
 }
  
