@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Button } from 'antd';
-import GridCards from '../commons/GridCards';
+import { Row, Col, Typography, Button } from 'antd';
+
 import Axios from 'axios';
+
+const {Title} = Typography
 
 function LandingPage(){
 
@@ -14,7 +16,8 @@ function LandingPage(){
                 if (response.data){
                     console.log(response.data)
                     setRestaurants(response.data)
-                    console.log(Restaurants)
+                   
+
                 }
                 else{
                     alert('식당 리스트 출력 실패')
@@ -23,28 +26,41 @@ function LandingPage(){
 
     }, [])
 
+    const renderCards = Restaurants.map((restaurant, index) => {
+
+        return <Col lg={6} md={8} xs={24} key={index}>
+            <a>
+                <div style={{position:'relative', border:'1px'}}>
+                {restaurant.memberName}<br/>
+                {restaurant.memberAddress}
+
+                </div>
+            </a>
+            <br />
+            {/* <Meta 
+                avatar={ //동그라미 user이미지
+                    <Avatar src={video.writer.image} />
+                }
+                title={video.title}
+                description="" />
+            <span>{video.writer.name} </span><br />
+            <span style={{ marginLeft: '3rem' }}> {video.views}</span> - 
+            <span> {moment(video.createdAt).format("MMM Do YY")} </span> */}
+        </Col>
+    })
+
+
     return (
-        <div style={{ width: '100%', margin: '0' }}>
-            {/* Main Image */}
+        <div style={{width:'85%', margin:'3rem auto'}}>
+            <Title level={2}>맛집 둘러보기</Title>
+            <hr />
+            <Row gutter={[32,16]}>
 
 
-            <div style={{ width: '85%', margin: '1rem auto' }}>
+                {renderCards}
+                
+            </Row>
 
-                <h2>맛집 둘러보기</h2>
-                <hr />
-
-                {/* Movie Grid Cards */}
-                <Row gutter={[16, 16]} >
-
-                    <GridCards Restaurants={Restaurants}/>
-                    
-                </Row>
-
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button> Load More</Button>
-            </div>
 
         </div>
     )
