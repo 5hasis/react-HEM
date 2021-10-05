@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Typography, Button } from 'antd';
+
 import Axios from 'axios';
 
 const {Title} = Typography
@@ -30,6 +31,7 @@ function LandingPage(){
                 <div style={{position:'relative', border:'1px'}}>
                 {restaurant.memberName}<br/>
                 {restaurant.memberAddress}
+
                 </div>
             </a>
             <br />
