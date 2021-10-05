@@ -40,9 +40,11 @@ export class MemberService {
 
     //회원 리스트
     async getAllMember():Promise <Member[]> {
-        return this.memberRepository.find({
+        const restaurants =  this.memberRepository.find({
             select: ["memberNo", "memberName", "memberAddress", "memberPhone"]
         });
+
+        return restaurants;
     }
 
     //회원 삭제(자신의 정보만)
