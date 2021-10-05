@@ -8,8 +8,10 @@
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.16.13",
     "axios": "^0.22.0",
+    "bootstrap": "^5.1.1",
     "http-proxy-middleware": "^2.0.1",
     "react": "^17.0.2",
+    "react-bootstrap": "^1.6.4",
     "react-daum-postcode": "^2.0.6",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.0",
@@ -47,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.7.0",
     "css-loader": "^6.3.0",
     "style-loader": "^3.3.0"
   }

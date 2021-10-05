@@ -16,6 +16,8 @@ function LandingPage(){
                 if (response.data){
                     console.log(response.data)
                     setRestaurants(response.data)
+                   
+
                 }
                 else{
                     alert('식당 리스트 출력 실패')
@@ -47,11 +49,13 @@ function LandingPage(){
         </Col>
     })
 
+
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>맛집 둘러보기</Title>
             <hr />
             <Row gutter={[32,16]}>
+
 
                 {renderCards}
                 
