@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 
+import NavBar from "./components/views/NavBar/NavBar";
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
@@ -14,7 +15,9 @@ import RegisterSuccessPage from "./components/views/RegisterPage/RegisterSuccess
 function App() {
   return (
     <Router>
-      <div>
+       <NavBar />
+       
+       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         {/*
           A <Switch> looks through all its children <Route>
           elements and renders the first one whose path
