@@ -30,7 +30,7 @@ function LandingPage(){
 
         return <Col lg={6} md={8} xs={24} key={index}>
             <a>
-                <div style={{position:'relative', border:'1px'}}>
+                <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
                 {restaurant.memberName}<br/>
                 {restaurant.memberAddress}
 
@@ -55,7 +55,6 @@ function LandingPage(){
             <Title level={2}>맛집 둘러보기</Title>
             <hr />
             <Row gutter={[32,16]}>
-
 
                 {renderCards}
                 
