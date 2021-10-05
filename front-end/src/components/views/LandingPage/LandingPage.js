@@ -13,7 +13,8 @@ function LandingPage(){
             .then(response => {
                 if (response.data){
                     console.log(response.data)
-                    //setRestaurants(response.data.restaurants)
+                    setRestaurants(response.data)
+                    console.log(Restaurants)
                 }
                 else{
                     alert('식당 리스트 출력 실패')
@@ -35,7 +36,7 @@ function LandingPage(){
                 {/* Movie Grid Cards */}
                 <Row gutter={[16, 16]} >
 
-                    <GridCards />
+                    <GridCards Restaurants={Restaurants}/>
                     
                 </Row>
 
