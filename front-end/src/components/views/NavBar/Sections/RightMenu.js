@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu } from 'antd';
 import axios from 'axios';
-import { USER_SERVER } from '../../../Config';
+//import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
@@ -9,8 +9,12 @@ function RightMenu(props) {
   const user = useSelector(state => state.user)
 
   const logoutHandler = () => {
-    axios.get(`${USER_SERVER}/logout`).then(response => {
-      if (response.status === 200) {
+    axios.get('/api/member/logout').then(response => {
+      // console.log(response.data)
+      // console.log(response.data.accessToken)
+      if (!response.data.accessToken) {
+        window.localStorage.removeItem('accessToken')
+        //window.localStorage.setItem('accessToken', response.payload.accessToken);
         props.history.push("/login");
       } else {
         alert('Log Out Failed')
@@ -18,9 +22,9 @@ function RightMenu(props) {
     });
   };
 
-  if (user.userData && !user.userData.isAuth) {
+  if (!user) {
     return (
-      <Menu mode={props.mode}>
+      <Menu mode="horizontal" style={{ width: 256 }}>
         <Menu.Item key="mail">
           <a href="/login">Signin</a>
         </Menu.Item>

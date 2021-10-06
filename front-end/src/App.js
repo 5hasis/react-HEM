@@ -10,7 +10,8 @@ import LandingPage from "./components/views/LandingPage/LandingPage";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import RegisterSuccessPage from "./components/views/RegisterPage/RegisterSuccessPage";
-
+import RestaurantDetailPage from "./components/views/RestaurantPage/RestaurantDetailPage";
+import MyRestaurantInfo from "./components/views/RestaurantPage/MyRestaurantInfo";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
 
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/registerSuccess" component={RegisterSuccessPage} />
+
+          <Route exact path="/restaurant/:restaurantNo" component={RestaurantDetailPage} />
+          <Route exact path="/myRestaurantInfo" component={MyRestaurantInfo} />
 
         </Switch>
       </div>

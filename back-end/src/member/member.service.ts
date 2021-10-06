@@ -53,6 +53,12 @@ export class MemberService {
         return restaurants;
     }
 
+    //식당 디테일
+    getDetailByNo(memberNo:number):Promise<Member> {
+        const member = this.memberRepository.findOne({memberNo});
+        return member
+    }
+
     //회원 삭제(자신의 정보만)
     async deleteMember(member:Member) : Promise<void> {
         const result = await this.memberRepository.delete(member.memberNo);
