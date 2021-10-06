@@ -27,9 +27,9 @@ function LandingPage(){
     }, [])
 
     const renderCards = Restaurants.map((restaurant, index) => {
-
+        //console.log(restaurant)
         return <Col lg={6} md={8} xs={24} key={index}>
-            <a>
+            <a href={`/restaurant/${restaurant.memberNo}`}>
                 <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
                 {restaurant.memberName}<br/>
                 {restaurant.memberAddress}
