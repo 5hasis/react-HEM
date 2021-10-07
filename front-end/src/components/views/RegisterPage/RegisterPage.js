@@ -4,7 +4,7 @@ import PopupPostCode from './PopupPostCode';
 import {useDispatch} from 'react-redux';
 import {registerUser} from '../../../_actions/user_action';
 import axios from 'axios';
-import {withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom'; 
 
 
 function RegisterPage(props){
@@ -75,7 +75,7 @@ function RegisterPage(props){
             let body={
                 memberName:Name,
                 memberPhone:Phone,
-                memberAddress:FirstAddress+Address,
+                memberAddress:FirstAddress+' '+Address,
                 memberId:Id,
                 memberPw:Password
             }
