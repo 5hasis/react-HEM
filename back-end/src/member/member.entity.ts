@@ -25,13 +25,13 @@ export class Member extends BaseEntity {
     @Column()
     memberPw: string;
 
-    @OneToMany(() => Menu, menu => menu.member)
+    @OneToMany(type => Menu, menu => menu.member)
     menus: Menu[];
 
-    @OneToMany(() => Order, order => order.member)
+    @OneToMany(type => Order, order => order.member)
     orders: Order[];
 
-    @OneToMany(() => Reservation, reservation => reservation.member)
+    @OneToMany(type => Reservation, reservation => reservation.member,{eager:false})
     reservations: Reservation[];
 
 }

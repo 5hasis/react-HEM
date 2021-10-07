@@ -35,6 +35,14 @@ function RestauranDetailPage(props) {
         });
     }
 
+    const makeReservation =(event) =>{
+        history.push({
+            pathname:`/reservation/${restaurantNo}`,
+            state:RestaurantDetail
+
+        })
+    }
+
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>{RestaurantDetail.memberName}</Title>
@@ -42,7 +50,9 @@ function RestauranDetailPage(props) {
             <Title level={4}>{RestaurantDetail.memberAddress}</Title>
             <Title level={4}>{RestaurantDetail.memberPhone}</Title>
 
+            <Button onClick={makeReservation}>예약하기</Button>
             <Button onClick={updateBtn}>내 가게 수정</Button>
+
         </div>
     )
 }
