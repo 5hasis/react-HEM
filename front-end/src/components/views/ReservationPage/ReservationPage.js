@@ -54,7 +54,7 @@ function ReservationPage(props) {
             reservationDate:RvDate,
             reservationTime:RvHour+':'+RvMinute,
             reservationPeople:RvNumber,
-            member:memberNo
+            memberMemberNo:memberNo
         }
 
         dispatch(reservationUser(body))

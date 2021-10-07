@@ -31,7 +31,7 @@ export class Member extends BaseEntity {
     @OneToMany(type => Order, order => order.member)
     orders: Order[];
 
-    @OneToMany(type => Reservation, reservation => reservation.member,{eager:false})
+    @OneToMany(type => Reservation, reservation => reservation.member,{eager:true})
     reservations: Reservation[];
 
 }
