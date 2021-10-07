@@ -16,9 +16,9 @@ export class ReservationController {
 
     @Post('/createReservation')
     @UsePipes(ValidationPipe)
-    createReservation(@Body() createReservationDto:CreateReservationDto ,member:Member       
+    createReservation(@Body() createReservationDto:CreateReservationDto        
                     ):Promise<{reservationSuccess:boolean}>{
-        return this.reservationService.createReservation(createReservationDto,member);
+        return this.reservationService.createReservation(createReservationDto);
     }
 
     @Get('/:reservationName')
