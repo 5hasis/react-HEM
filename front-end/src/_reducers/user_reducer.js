@@ -1,5 +1,5 @@
 import {
-    LOGIN_USER,REGISTER_USER
+    LOGIN_USER,REGISTER_USER,RESERVATION_USER
 } from '../_actions/types';
 
 export default function(state = {}, action) {
@@ -9,6 +9,9 @@ export default function(state = {}, action) {
             break;
         case REGISTER_USER:
             return {...state,register:action.payload}
+            break;
+        case RESERVATION_USER:
+            return {...state,reservation:action.payload}
             break;
         default:
             return state;

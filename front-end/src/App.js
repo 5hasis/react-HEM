@@ -11,6 +11,7 @@ import LoginPage from "./components/views/LoginPage/LoginPage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import RegisterSuccessPage from "./components/views/RegisterPage/RegisterSuccessPage";
 import ReservationPage from "./components/views/ReservationPage/ReservationPage";
+import ReservationSuccessPage from "./components/views/ReservationPage/ReservationSuccessPage";
 import RestaurantDetailPage from "./components/views/RestaurantPage/RestaurantDetailPage";
 import MyRestaurantInfo from "./components/views/RestaurantPage/MyRestaurantInfo";
 
@@ -40,7 +41,8 @@ function App() {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/registerSuccess" component={RegisterSuccessPage} />
-          <Route exact path="/reservation" component={ReservationPage} />
+          <Route exact path="/reservation/:restaurantNo" component={ReservationPage} />
+          <Route exact path="/reservationSuccess" component={ReservationSuccessPage} />
           <Route exact path="/restaurant/:restaurantNo" component={RestaurantDetailPage} />
           <Route exact path="/myRestaurantInfo" component={MyRestaurantInfo} />
 

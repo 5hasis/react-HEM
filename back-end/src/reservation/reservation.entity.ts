@@ -17,12 +17,12 @@ export class Reservation extends BaseEntity {
     reservationDate: Date;
 
     @Column()
-    reservationTime : Date;
+    reservationTime : String;
 
     @Column()
     reservationPeople : number;
 
-    @ManyToOne(() => Member, member => member.reservations)
+    @ManyToOne(type => Member, member => member.reservations,{eager:false})
     member:Member;
 
 }
