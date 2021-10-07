@@ -23,8 +23,7 @@ export class MemberController {
         return this.memberService.signIn(memberSignInDto);
     }
 
-    @Get('/logout')
-    @UseGuards(AuthGuard())
+    @Get('/logout')//@UseGuards(AuthGuard())
     logout():Promise<{accessToken:string}> {
         return this.memberService.logout();
     }
@@ -32,6 +31,11 @@ export class MemberController {
     @Get('/list')
     getAllMember(): Promise<Member[]> {
         return this.memberService.getAllMember();
+    }
+
+    @Get('/detail/:memberNo')
+    getDetailByNo(@Param('memberNo') memberNo:number):Promise<Member> {
+        return this.memberService.getDetailByNo(memberNo);
     }
 
     @Delete('/delete')
