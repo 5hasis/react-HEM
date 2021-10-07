@@ -30,6 +30,7 @@ function RegisterPage(props){
             setText('');
         }
 
+        //만들어둔 action을 useDispath를 통해 발생시킴
         const dispatch=useDispatch();
 
         const [Name, setName] = useState("")

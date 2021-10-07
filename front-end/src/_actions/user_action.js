@@ -26,3 +26,14 @@ export function registerUser(dataToSubmit){
     }
 
 }
+
+export function updateUser(dataToSubmit){
+
+    const request=axios.patch('/api/member/update',dataToSubmit)
+        .then(response=>response.data)
+    return {
+        type:REGISTER_USER,
+        payload:request
+    }
+
+}

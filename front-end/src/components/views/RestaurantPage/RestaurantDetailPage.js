@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Typography, Button } from 'antd';
+import { Typography, Button } from 'antd';
 import { useHistory } from "react-router-dom";
 
 import Axios from 'axios';
