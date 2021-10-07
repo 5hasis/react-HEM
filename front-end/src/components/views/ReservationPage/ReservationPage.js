@@ -1,72 +1,104 @@
 import React,{useState,useEffect} from 'react';
 import { Row, Col, Typography, Button } from 'antd';
-import Axios from 'axios';
+import {useDispatch} from 'react-redux';
+import {reservationUser} from '../../../_actions/user_action';
+import axios from 'axios';
 
-const {Title} = Typography
 
-function ReservationPage() {
-    const [Restaurants, setRestaurants] = useState([])
+
+
+function ReservationPage(props) {
     
+    const memberNo = props.match.params.restaurantNo
+    
+    const [setText] = useState('');
+    const dispatch=useDispatch();
+
+    const [Name, setName] = useState("")
+    const [Phone, setPhone] = useState("")
+    const [RvDate, setRvDate] = useState("")
+    const [RvHour, setRvHour] = useState(10)
+    const [RvMinute, setRvMinute] = useState("00")
+    const [RvNumber, setRvNumber] = useState(1)
+
+
+    const onNameHandler=(event)=>{
+        setName(event.currentTarget.value)
+    }
+    const onPhoneHandler=(event)=>{
+        setPhone(event.currentTarget.value)
+    }
+    const onRvDateHandler=(event)=>{
+        setRvDate(event.currentTarget.value)
+    }
+    const onRvHourHandler=(event)=>{
+        setRvHour(event.currentTarget.value)
+    }
+    const onRvMinuteHandler=(event)=>{
+        setRvMinute(event.currentTarget.value)
+    }
+    const onRvNumberHandler=(event)=>{
+        setRvNumber(event.currentTarget.value)
+    }
+
+
    
 
-    useEffect(() => {
+    const onSubmitHandler=(event)=>{
+        event.preventDefault();
+
+
+        let body={
+            reservationName:Name,
+            reservationPhone:Phone,
+            reservationDate:RvDate,
+            reservationTime:RvHour+':'+RvMinute,
+            reservationPeople:RvNumber,
+            member:memberNo
+        }
+
+        dispatch(reservationUser(body))
+        .then(response=>{
+            
+            if(response.payload.reservationSuccess){
+                console.log(memberNo)
+                props.history.push("/reservationSuccess")
+            }else{
+                alert("예약을 실패하였습니다.")
+            }
+            
+        })
+
         
-        Axios.get('/api/member/list')
-            .then(response => {
-                if (response.data){
-                    console.log(response.data)
-                    setRestaurants(response.data)
-                   
-
-                }
-                else{
-                    alert('식당 리스트 출력 실패')
-                }
-            })
-
-    }, [])
-
-    const renderCards = Restaurants.map((restaurant, index) => {
-
-        return <Col lg={6} md={8} xs={24} key={index}>
-            <a>
-                <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
-                {restaurant.memberName}<br/>
-                {restaurant.memberAddress}
-
-                </div>
-            </a>
-            <br />
-            {/* <Meta 
-                avatar={ //동그라미 user이미지
-                    <Avatar src={video.writer.image} />
-                }
-                title={video.title}
-                description="" />
-            <span>{video.writer.name} </span><br />
-            <span style={{ marginLeft: '3rem' }}> {video.views}</span> - 
-            <span> {moment(video.createdAt).format("MMM Do YY")} </span> */}
-        </Col>
-    })
+    }
 
 
     return (
         
         
-        <div style={{width:'85%', margin:'3rem auto'}}>
-            <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100vh'}}>
-                <input type="text" placeholder="Search..."></input>
+        <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100vh'}}>
+        <form style={{display:'flex',flexDirection:'column',width:'20%'}} onSubmit={onSubmitHandler}>
+            <label>예약자 이름</label>
+            <input type="text" value={Name} onChange={onNameHandler}/>
+            <label>전화번호</label>
+            <input type="text" value={Phone} onChange={onPhoneHandler}/>
+            <label>예약 날짜</label>
+            <input type="date" value={RvDate} onChange={onRvDateHandler}/>     
+            <label>예약 시간</label>
+            <div> 
+            <input type="number" value={RvHour} style={{width:'45px'}} min={10} max={23} onChange={onRvHourHandler}/> 시&ensp;
+            <input type="number" value={RvMinute} style={{width:'45px'}} min={0} max={59} onChange={onRvMinuteHandler}/> 분
             </div>
-           
-            <Row gutter={[32,16]}>
-
-                {renderCards}
-                
-            </Row>
-
-
-        </div>
-    )
+            <label>인원 수</label>
+            <input type="number" value={RvNumber} min={1} onChange={onRvNumberHandler}/>
+            
+            <br/>
+            <button type="submit">예약하기</button>
+            {/* <button onClick={onReset}>Reset</button> */}
+        </form>
+    </div>
+);
+    
 }
   
 

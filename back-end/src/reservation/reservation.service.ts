@@ -5,6 +5,7 @@ import { create } from 'domain';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ReservationRepository } from './reservation.repository';
 import { Reservation } from './reservation.entity';
+import { Member } from 'src/member/member.entity';
 @Injectable()
 export class ReservationService {
     constructor(
@@ -16,8 +17,8 @@ export class ReservationService {
         return this.reservationRepository.find();
     }
 
-    async createReservation(createReservationDto:CreateReservationDto):Promise<Reservation>{
-      return this.reservationRepository.createReservation(createReservationDto);
+    async createReservation(createReservationDto:CreateReservationDto,member:Member):Promise<{reservationSuccess:boolean}>{
+      return this.reservationRepository.createReservation(createReservationDto,member);
     }
 
     async getReservationByName(reservationName:string):Promise<Reservation>{

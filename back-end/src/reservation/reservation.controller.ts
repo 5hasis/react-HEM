@@ -1,9 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Member } from 'src/member/member.entity';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { Reservation } from './reservation.entity';
 import { ReservationService } from './reservation.service';
 
-@Controller('reservation')
+@Controller('/api/reservation')
 export class ReservationController {
 
     constructor(private reservationService:ReservationService){}
@@ -13,11 +14,11 @@ export class ReservationController {
         return this.reservationService.getAllReservations();
     }
 
-    @Post()
+    @Post('/createReservation')
     @UsePipes(ValidationPipe)
-    createReservation(@Body() createReservationDto:CreateReservationDto        
-                    ):Promise<Reservation>{
-        return this.reservationService.createReservation(createReservationDto);
+    createReservation(@Body() createReservationDto:CreateReservationDto ,member:Member       
+                    ):Promise<{reservationSuccess:boolean}>{
+        return this.reservationService.createReservation(createReservationDto,member);
     }
 
     @Get('/:reservationName')

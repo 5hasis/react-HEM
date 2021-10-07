@@ -1,4 +1,4 @@
-import { IsNotEmpty } from "class-validator";
+import { isNotEmpty, IsNotEmpty } from "class-validator";
 
 
 export class CreateReservationDto {
@@ -9,10 +9,11 @@ export class CreateReservationDto {
     @IsNotEmpty()
     reservationDate: Date;
     @IsNotEmpty()
-    reservationTime : Date;
+    reservationTime : String;
     @IsNotEmpty()
     reservationPeople : number;
+   
 
-    //
+    
 }
 

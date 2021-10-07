@@ -13,7 +13,7 @@ export class Order extends BaseEntity{
     @Column()
     orderPrice:number;
 
-    @ManyToOne(() => Member, member => member.orders)
+    @ManyToOne(type => Member, member => member.orders)
     member: Member;
 
     @ManyToMany(() => Menu)
