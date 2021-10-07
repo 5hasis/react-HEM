@@ -6,18 +6,21 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ReservationRepository } from './reservation.repository';
 import { Reservation } from './reservation.entity';
 import { Member } from 'src/member/member.entity';
+import { MemberRepository } from 'src/member/member.repository';
 @Injectable()
 export class ReservationService {
     constructor(
         @InjectRepository(ReservationRepository)
         private reservationRepository:ReservationRepository,
+        private memberRepository:MemberRepository
     ){}
     
     async getAllReservations():Promise<Reservation[]>{
         return this.reservationRepository.find();
     }
 
-    async createReservation(createReservationDto:CreateReservationDto,member:Member):Promise<{reservationSuccess:boolean}>{
+    async createReservation(createReservationDto:CreateReservationDto):Promise<{reservationSuccess:boolean}>{
+        const member=await this.memberRepository.findOne(createReservationDto.memberMemberNo)
       return this.reservationRepository.createReservation(createReservationDto,member);
     }
 
