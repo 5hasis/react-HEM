@@ -48,3 +48,20 @@ export function reservationUser(dataToSubmit){
     }
 
 }
+
+export function createMenu(dataToSubmit){
+
+    const token = localStorage.getItem('accessToken');
+
+    const request = axios({
+        method: 'post',
+        url: '/api/menu',
+        data: dataToSubmit,
+        headers: { Authorization: `Bearer ${token}` },
+      }).then(response=>response.data)
+
+    return {
+        type:"create_menu",
+        payload:request
+    }
+}

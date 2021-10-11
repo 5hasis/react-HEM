@@ -21,6 +21,10 @@ export default function(state = {}, action) {
             return {...state,reservation:action.payload}
             break;
 
+        case "create_menu":
+            return {...state,menu:action.payload}
+            break;
+
         default:
             return state;
     }
