@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Member } from 'src/member/member.entity';
+import { MemberRepository } from 'src/member/member.repository';
 import { Menu } from './menu.entity';
 import { MenuRepository } from './menu.repository';
 
@@ -9,9 +11,10 @@ export class MenuService {
     constructor(
         @InjectRepository(MenuRepository)
         private menuRepository:MenuRepository,
+        private memberRepository:MemberRepository
     ){}
 
-    async createMenu({menuName,menuPrice,member}):Promise<Menu>{
+    async createMenu({menuName,menuPrice }, member:Member):Promise<Menu>{
         const menu = this.menuRepository.create({
             menuName,
             menuPrice,

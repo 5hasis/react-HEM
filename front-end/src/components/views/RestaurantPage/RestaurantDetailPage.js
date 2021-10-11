@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Typography, Button } from 'antd';
+import { Typography, Button } from 'antd';
 import { useHistory } from "react-router-dom";
 
 import Axios from 'axios';
+import Menu from './Sections/Menu';
 
 const {Title} = Typography
 
@@ -43,6 +44,13 @@ function RestauranDetailPage(props) {
         })
     }
 
+    const createMenu = (event) => {
+        history.push({
+            pathname:`/menu/${restaurantNo}`,
+            state:RestaurantDetail
+        });
+    }
+
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>{RestaurantDetail.memberName}</Title>
@@ -52,6 +60,15 @@ function RestauranDetailPage(props) {
 
             <Button onClick={makeReservation}>예약하기</Button>
             <Button onClick={updateBtn}>내 가게 수정</Button>
+            <br />
+            
+            <div style={{marginTop:'3rem'}}>
+                <Title level={2}>메뉴 &nbsp;&nbsp;
+                    <Button onClick={createMenu}>메뉴 추가</Button>
+                </Title>
+                <hr />
+                <Menu restaurantNo={restaurantNo}/>
+            </div>
 
         </div>
     )
