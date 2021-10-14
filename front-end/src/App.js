@@ -14,6 +14,8 @@ import ReservationPage from "./components/views/ReservationPage/ReservationPage"
 import ReservationSuccessPage from "./components/views/ReservationPage/ReservationSuccessPage";
 import RestaurantDetailPage from "./components/views/RestaurantPage/RestaurantDetailPage";
 import MyRestaurantInfo from "./components/views/RestaurantPage/MyRestaurantInfo";
+import MyReservationPage from "./components/views/ReservationPage/MyReservationPage";
+import MyReservationDetailPage from "./components/views/ReservationPage/MyReservationDetailPage";
 
 
 function App() {
@@ -43,8 +45,10 @@ function App() {
           <Route exact path="/registerSuccess" component={RegisterSuccessPage} />
           <Route exact path="/reservation/:restaurantNo" component={ReservationPage} />
           <Route exact path="/reservationSuccess" component={ReservationSuccessPage} />
+          <Route exact path="/myReservation" component={MyReservationPage} />
           <Route exact path="/restaurant/:restaurantNo" component={RestaurantDetailPage} />
           <Route exact path="/myRestaurantInfo" component={MyRestaurantInfo} />
+          <Route exact path="/myReservation/:reservationNumber" component={MyReservationDetailPage} />
 
 
         </Switch>
