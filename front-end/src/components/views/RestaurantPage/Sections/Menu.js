@@ -1,42 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col,Row } from 'antd';
-import Axios from 'axios';
+import {useDispatch} from 'react-redux';
+import { createOrderHistory } from '../../../../_actions/user_action';
 
 function Menu(props) {
 
-    const [Menu, setMenu] = useState([]);
-    const [OrderMenu, setOrderMenu] = useState([])
+    const [OrderMenu, setOrderMenu] = useState([]);
+    const MenuInfo = props.Menus
 
     useEffect(() => {
-        Axios.get(`/api/menu/${props.restaurantNo}`)
-            .then(response => {
-              if(response.data)  {
-                setMenu(response.data)
-                
-              }
-              else{
-                alert('메뉴 정보를 가져오는데 실패')
-              }
-            })
-
-    }, [])
-
-    useEffect(() => {
-        const OrderArr = Menu.map((item,index)=>{
-            return {menuName:item.menuName, orderAmount:0}
+        console.log('props.Menus : ',props.Menus);
+        const OrderArr = MenuInfo.map((item,index)=>{ 
+            return {menuNumber:item.menuNumber, menuName:item.menuName, orderAmount:0}
         })
-        setOrderMenu(...OrderMenu,OrderArr)
+        console.log(OrderArr)
+        setOrderMenu(...OrderMenu,OrderArr);
 
-    }, [])
+    }, [props.Menus])
 
+    
     const [inputs, setInputs] = useState({
-        menuName: ""
+        orderAmount: ''
       })      
     
     const onOrderNumberHandler= (index) => (event)=>{
-
-        console.log(OrderMenu);
-
+        
         setInputs({
             ...inputs,
             [event.target.name]:event.target.value
@@ -46,23 +34,39 @@ function Menu(props) {
             if (index == i) { 
                 return { ...item, orderAmount: event.target.value }; 
             } else { 
-                return item; 
+                return {...item}; 
             } 
         }); 
         setOrderMenu(newArr);
-   
+        
     }
+
+    const dispatch=useDispatch();
 
     const onSubmitHandler=(event)=>{
+        console.log('OrderMenu : ', OrderMenu)
         event.preventDefault();
 
-        Axios.post('/api/order',OrderMenu) 
-            .then(response => response.data)       
+        {OrderMenu && OrderMenu.map((item, i) => { 
+
+            const body={
+                menusMenuNumber:item.menuNumber,
+                orderAmount:item.orderAmount
+            }
+
+            if(parseInt(item.orderAmount) !== 0) {
+                dispatch(createOrderHistory(body))
+                .then(response=>{
+                    console.log(response)
+                })
+            }
+        }); 
+    }
+               
 
     }
 
-
-    const renderCards = Menu.map((menu, index) => {
+    const renderCards = MenuInfo.map((menu, index) => {
         
         return <Col lg={6} md={8} xs={24} key={index}>
             <a>
@@ -74,8 +78,8 @@ function Menu(props) {
                     </div>
                     
                     <div style={{display: 'inline-block', width:'30%', marginLeft:'36px'}}>
-                        
-                        <input type="number" name="menuName" min={0} onChange={onOrderNumberHandler(index)} 
+                        <div style={{color:'black'}}>수량</div>
+                        <input type="number" name="orderAmount" min={0} onChange={onOrderNumberHandler(index)} 
                             style={{width:'100%'}}
                         />
                         
@@ -94,7 +98,7 @@ function Menu(props) {
                 
             </Row>
             <div>
-                <Button type="submit">주문하기</Button>
+                <Button htmlType="submit">주문하기</Button>
             </div>
         </form>
         

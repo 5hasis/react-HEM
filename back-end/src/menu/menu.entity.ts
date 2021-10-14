@@ -1,5 +1,6 @@
 import { Member } from "src/member/member.entity";
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { OrderHistory } from "src/order-history/order-history.entity";
+import { BaseEntity, Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
 export class Menu extends BaseEntity{
@@ -17,5 +18,8 @@ export class Menu extends BaseEntity{
 
     @ManyToOne(() => Member, member => member.menus,{cascade:true})
     member: Member;
+
+    @OneToMany(() => OrderHistory, orderHistory => orderHistory.menus)
+    orderHistory: OrderHistory;
 
 }

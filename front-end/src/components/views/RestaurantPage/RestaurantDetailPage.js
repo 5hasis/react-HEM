@@ -7,12 +7,13 @@ import Menu from './Sections/Menu';
 
 const {Title} = Typography
 
-function RestauranDetailPage(props) {
+function RestaurantDetailPage(props) {
     //console.log(props)
 
     const restaurantNo = props.match.params.restaurantNo
 
     const [RestaurantDetail, setRestaurantDetail] = useState([])
+    const [Menus, setMenus] = useState([]);
 
     useEffect(() => {
         Axios.get(`/api/member/detail/${restaurantNo}`)
@@ -25,7 +26,19 @@ function RestauranDetailPage(props) {
                     alert('식당 정보를 가져오는데 실패')
                 }
             })
+
+            Axios.get(`/api/menu/${restaurantNo}`)
+            .then(response => {
+              if(response.data)  {
+                //console.log(response.data)
+                setMenus(response.data)
+              }
+              else{
+                alert('메뉴 정보를 가져오는데 실패')
+              }
+            })
     }, [])
+
 
     let history = useHistory();
 
@@ -58,7 +71,7 @@ function RestauranDetailPage(props) {
             <Title level={4}>{RestaurantDetail.memberAddress}</Title>
             <Title level={4}>{RestaurantDetail.memberPhone}</Title>
 
-            <Button onClick={makeReservation}>예약하기</Button>
+            <Button onClick={makeReservation}>예약하기</Button>&nbsp;&nbsp;
             <Button onClick={updateBtn}>내 가게 수정</Button>
             <br />
             
@@ -69,10 +82,10 @@ function RestauranDetailPage(props) {
                 <hr />
                 
             </div>
-            <Menu restaurantNo={restaurantNo}/>
+            <Menu Menus={Menus}/>
 
         </div>
     )
 }
 
-export default RestauranDetailPage
+export default RestaurantDetailPage

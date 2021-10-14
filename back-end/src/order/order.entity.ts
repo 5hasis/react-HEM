@@ -1,6 +1,6 @@
 import { Member } from "src/member/member.entity";
-import { Menu } from "src/menu/menu.entity";
-import { BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { OrderHistory } from "src/order-history/order-history.entity";
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
 export class Order extends BaseEntity{
@@ -16,7 +16,6 @@ export class Order extends BaseEntity{
     @ManyToOne(type => Member, member => member.orders)
     member: Member;
 
-    @ManyToMany(() => Menu)
-    @JoinTable()
-    menus: Menu[];
+    @OneToMany(type => OrderHistory, orderHistory => orderHistory.order, { eager: true })
+    orderHistory:OrderHistory[];
 }

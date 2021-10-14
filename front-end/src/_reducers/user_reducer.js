@@ -25,6 +25,10 @@ export default function(state = {}, action) {
             return {...state,menu:action.payload}
             break;
 
+        case "create_order_history":
+            return {...state,orderhistory:action.payload}
+            break;
+
         default:
             return state;
     }
