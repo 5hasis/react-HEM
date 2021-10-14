@@ -6,7 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
 function RightMenu(props) {
-  const user = useSelector(state => state.user)
+  //const user = useSelector(state => state.user)
+  const user = localStorage.getItem('accessToken')
 
   const logoutHandler = () => {
     axios.get('/api/member/logout').then(response => {
@@ -35,7 +36,7 @@ function RightMenu(props) {
     )
   } else {
     return (
-      <Menu mode={props.mode}>
+      <Menu mode="horizontal" style={{ width:'100%'}}>
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
         </Menu.Item>

@@ -28,8 +28,18 @@ export function registerUser(dataToSubmit){
 
 }
 
-export function reservationUser(dataToSubmit){
 
+export function updateUser(dataToSubmit){
+
+    const request=axios.patch('/api/member/update',dataToSubmit)
+        .then(response=>response.data)
+    return {
+        type:REGISTER_USER,
+        payload:request
+    }
+}
+
+export function reservationUser(dataToSubmit){
     const request=axios.post('/api/reservation/createReservation',dataToSubmit)
         .then(response=>response.data)
     return {
@@ -37,4 +47,21 @@ export function reservationUser(dataToSubmit){
         payload:request
     }
 
+}
+
+export function createMenu(dataToSubmit){
+
+    const token = localStorage.getItem('accessToken');
+
+    const request = axios({
+        method: 'post',
+        url: '/api/menu',
+        data: dataToSubmit,
+        headers: { Authorization: `Bearer ${token}` },
+      }).then(response=>response.data)
+
+    return {
+        type:"create_menu",
+        payload:request
+    }
 }

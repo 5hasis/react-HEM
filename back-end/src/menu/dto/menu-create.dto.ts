@@ -6,8 +6,8 @@ export class MenuCreateDto {
 
     menuPrice : number;
 
-    member : Member;
+    //member : Member;
 
-    //
+    memberMemberNo : number;
 
 }
