@@ -9,7 +9,7 @@ export class ReservationController {
 
     constructor(private reservationService:ReservationService){}
 
-    @Get()
+    @Get('/list')
     getAllReservation():Promise<Reservation[]>{
         return this.reservationService.getAllReservations();
     }
@@ -21,9 +21,14 @@ export class ReservationController {
         return this.reservationService.createReservation(createReservationDto);
     }
 
-    @Get('/:reservationName')
-    getReservationByName(@Param('reservationName') reservationName:string):Promise<Reservation>{
-        return this.reservationService.getReservationByName(reservationName);
+    @Get('/detail/:reservationNumber')
+    getDetailByNo(@Param('reservationNumber') reservationNumber:number):Promise<Reservation> {
+        return this.reservationService.getDetailByNo(reservationNumber);
+    }
+
+    @Get('/:reservationPhone')
+    getReservationByPhone(@Param('reservationPhone') reservationPhone:string):Promise<Reservation[]>{
+        return this.reservationService.getReservationByPhone(reservationPhone);
     }
 
     @Delete('/:reservationName')
@@ -31,8 +36,8 @@ export class ReservationController {
         return this.reservationService.deleteReservation(reservationName);
     }
     
-    @Patch('/:reservationName')
-    updateReservation(@Param('reservationName') reservationName:string):Promise<Reservation>{
-        return this.reservationService.updateReservation(reservationName);
-    }
+    // @Patch('/:reservationName')
+    // updateReservation(@Param('reservationName') reservationName:string):Promise<Reservation>{
+    //     return this.reservationService.updateReservation(reservationName);
+    // }
 }

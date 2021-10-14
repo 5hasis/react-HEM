@@ -31,6 +31,9 @@ function NavBar() {
       <div className="menu_list">
         <a href="/"className="menu_list_letter">Visited</a>
       </div>
+      <div className="menu_list">
+        <a href="/myReservation"className="menu_list_letter">My Reservation</a>
+      </div>
       <div className="menu__container">
        
         <div className="menu_rigth">

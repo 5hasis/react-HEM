@@ -7,6 +7,7 @@ import { ReservationRepository } from './reservation.repository';
 import { Reservation } from './reservation.entity';
 import { Member } from 'src/member/member.entity';
 import { MemberRepository } from 'src/member/member.repository';
+
 @Injectable()
 export class ReservationService {
     constructor(
@@ -24,12 +25,21 @@ export class ReservationService {
       return this.reservationRepository.createReservation(createReservationDto,member);
     }
 
-    async getReservationByName(reservationName:string):Promise<Reservation>{
-        const found=await this.reservationRepository.findOne(reservationName);
+
+    async getReservationByPhone(reservationPhone:string):Promise<Reservation[]>{
+        const found=await this.reservationRepository
+                                .createQueryBuilder('reservation')
+                                .where('reservation.reservationPhone = :reservationPhone', {reservationPhone:reservationPhone})
+                                .getMany();
         if(!found){
-            throw new NotFoundException(`Can't find reservation with name ${reservationName}`);
+            throw new NotFoundException(`Can't find reservation with number ${reservationPhone}`);
         }
         return found;
+    }
+
+    async getDetailByNo(reservationNumber:number):Promise<Reservation> {
+        const reservation = this.reservationRepository.findOne({reservationNumber});
+        return reservation
     }
    
     async deleteReservation(reservationName:string):Promise<void>{
@@ -39,10 +49,10 @@ export class ReservationService {
         }
     }
     
-    async updateReservation(reservationName:string):Promise<Reservation>{
-        const reservation=await this.getReservationByName(reservationName);
+    // async updateReservation(reservationPhone:string):Promise<Reservation>{
+    //     const reservation=await this.getReservationByPhone(reservationPhone);
 
-        await this.reservationRepository.save(reservation);
-        return reservation;
-    }
+    //     await this.reservationRepository.save(reservation);
+    //     return reservation;
+    // }
 }
