@@ -67,8 +67,9 @@ function RestauranDetailPage(props) {
                     <Button onClick={createMenu}>메뉴 추가</Button>
                 </Title>
                 <hr />
-                <Menu restaurantNo={restaurantNo}/>
+                
             </div>
+            <Menu restaurantNo={restaurantNo}/>
 
         </div>
     )

@@ -11,7 +11,7 @@ export class MenuController {
         private menuService:MenuService
     ){}
 
-    // 메뉴 등록
+    // 메뉴 등록.
     @Post()
     @UseGuards(AuthGuard())
     insertMenu(

@@ -6,6 +6,8 @@ import { OrderModule } from './order/order.module';
 import { MenuModule } from './menu/menu.module';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ReservationModule } from './reservation/reservation.module';
+import { OrderHistoryController } from './order-history/order-history.controller';
+import { OrderHistoryService } from './order-history/order-history.service';
 
 
 @Module({
@@ -15,6 +17,8 @@ import { ReservationModule } from './reservation/reservation.module';
     MenuModule,
     MemberModule, VisitedModule, ReservationModule
   ],
+  controllers: [OrderHistoryController],
+  providers: [OrderHistoryService],
 })
 export class AppModule { }
 
