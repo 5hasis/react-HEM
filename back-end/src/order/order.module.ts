@@ -4,10 +4,12 @@ import { OrderController } from './order.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrderRepository } from './order.repository';
 import { MemberModule } from 'src/member/member.module';
+import { MemberRepository } from 'src/member/member.repository';
 
 @Module({
     imports: [
         MemberModule,
+        TypeOrmModule.forFeature([MemberRepository]),
         TypeOrmModule.forFeature([OrderRepository])
     ],
     providers: [OrderService],

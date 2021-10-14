@@ -65,3 +65,13 @@ export function createMenu(dataToSubmit){
         payload:request
     }
 }
+
+export function createOrderHistory(dataToSubmit){
+    const request=axios.post('/api/orderhistory',dataToSubmit)
+        .then(response=>response.data)
+    return {
+        type:"create_order_history",
+        payload:request
+    }
+
+}

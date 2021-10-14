@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ReservationModule } from './reservation/reservation.module';
 import { OrderHistoryController } from './order-history/order-history.controller';
 import { OrderHistoryService } from './order-history/order-history.service';
+import { OrderHistoryModule } from './order-history/order-history.module';
 
 
 @Module({
@@ -15,10 +16,10 @@ import { OrderHistoryService } from './order-history/order-history.service';
     TypeOrmModule.forRoot(typeORMConfig),
     OrderModule,
     MenuModule,
-    MemberModule, VisitedModule, ReservationModule
+    MemberModule, VisitedModule, ReservationModule, OrderHistoryModule
   ],
-  controllers: [OrderHistoryController],
-  providers: [OrderHistoryService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule { }
 
