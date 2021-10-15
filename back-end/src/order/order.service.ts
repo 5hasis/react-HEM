@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { MemberRepository } from 'src/member/member.repository';
 import { OrderCreateDto } from './dto/order-create.dto';
 import { Order } from './order.entity';
 import { OrderRepository } from './order.repository';
@@ -10,9 +11,13 @@ export class OrderService {
     constructor(
         @InjectRepository(OrderRepository)
         private orderRepository:OrderRepository,
+        private memberRepository:MemberRepository,
     ){}
 
-    async createOrder({orderPrice, orderTableNumber,member} : OrderCreateDto):Promise<Order>{
+
+    async createOrder({orderPrice, orderTableNumber,memberMemberNo} : OrderCreateDto):Promise<Order>{
+        const member = await this.memberRepository.findOne(memberMemberNo);
+      
         const order = this.orderRepository.create(
             {
                 orderPrice,

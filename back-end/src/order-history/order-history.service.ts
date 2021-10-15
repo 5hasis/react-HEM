@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MenuRepository } from 'src/menu/menu.repository';
+import { OrderRepository } from 'src/order/order.repository';
 import { OrderHistoryCreateDto } from './dto/order-history-create.dto';
 import { OrderHistory } from './order-history.entity';
 import { OrderHistoryRepository } from './order-history.repository';
@@ -10,6 +11,7 @@ export class OrderHistoryService {
     constructor(
         @InjectRepository(OrderHistoryRepository)
         private orderHistoryRepository:OrderHistoryRepository,
+        private orderRepository:OrderRepository,
         private menuRepository:MenuRepository,
     ){}
 
@@ -17,14 +19,17 @@ export class OrderHistoryService {
         const {
                 orderAmount,
                 menusMenuNumber,
+                orderOrderNumber
             } = orderHistoryCreateDto;
 
         const menu = await this.menuRepository.findOne(menusMenuNumber);
+        const order = await this.orderRepository.findOne(orderOrderNumber);
+
 
         const orders = new OrderHistory();
         orders.orderAmount = orderAmount;
         orders.menus = menu;
-
+        orders.order = order;
 
         await this.orderHistoryRepository.save(orders)
         return orders
