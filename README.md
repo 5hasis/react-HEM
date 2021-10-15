@@ -6,17 +6,13 @@
 - 팀 프로젝트(2명) : 박은지, 오하영
 
 <br>
+
 ## 개발 환경
 - Programming Language : JavaScript
 - Technology : React.js
 - Tool : VSCode, Github
 
 <br>
-
-## ERD 설계
-![image](https://user-images.githubusercontent.com/80090062/135396703-703f3476-8d71-455d-85f2-c52acae35fd7.png)
-
-
 
 ## 프로젝트 기능
 1. 회원 기능
