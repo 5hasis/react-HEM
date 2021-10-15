@@ -1,4 +1,4 @@
-# H.E.M ster (Backend)
+# H.E.M ster (Frontend)
 <br>
 
 ## 개발기간 & 참여인원
