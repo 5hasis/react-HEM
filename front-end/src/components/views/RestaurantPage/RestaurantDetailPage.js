@@ -82,7 +82,7 @@ function RestaurantDetailPage(props) {
                 <hr />
                 
             </div>
-            <Menu Menus={Menus}/>
+            <Menu Menus={Menus} restaurantNo={restaurantNo} />
 
         </div>
     )

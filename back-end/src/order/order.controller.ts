@@ -5,7 +5,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Order } from './order.entity';
 import { MemberService } from 'src/member/member.service';
 
-@Controller('order')
+@Controller('/api/order')
 export class OrderController {
 
     constructor(
@@ -16,8 +16,8 @@ export class OrderController {
     @Post()
     insertOrder(
         @Body() orderCreateDto : OrderCreateDto,
-        ){
-            this.orderService.createOrder(orderCreateDto)
+        ):Promise<Order>{
+            return this.orderService.createOrder(orderCreateDto)
     }
 
     // // 주문 리스트

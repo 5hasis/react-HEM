@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col,Row } from 'antd';
-import {useDispatch} from 'react-redux';
-import { createOrderHistory } from '../../../../_actions/user_action';
+import Axios from 'axios';
+import Orders from './Orders';
 
 function Menu(props) {
 
     const [OrderMenu, setOrderMenu] = useState([]);
     const MenuInfo = props.Menus
+    const restaurantNo = props.restaurantNo;
 
     useEffect(() => {
-        console.log('props.Menus : ',props.Menus);
+        //console.log('props.Menus : ',props.Menus);
         const OrderArr = MenuInfo.map((item,index)=>{ 
-            return {menuNumber:item.menuNumber, menuName:item.menuName, orderAmount:0}
+            return {menuNumber:item.menuNumber, menuPrice:item.menuPrice, orderAmount:0}
         })
-        console.log(OrderArr)
+        //console.log(OrderArr)
         setOrderMenu(...OrderMenu,OrderArr);
 
     }, [props.Menus])
@@ -21,7 +22,7 @@ function Menu(props) {
     
     const [inputs, setInputs] = useState({
         orderAmount: ''
-      })      
+      })   
     
     const onOrderNumberHandler= (index) => (event)=>{
         
@@ -41,29 +42,38 @@ function Menu(props) {
         
     }
 
-    const dispatch=useDispatch();
+    
+    const [OrderNumber, setOrderNumber] = useState(0)
+
+    function totalOrderPrice () {
+        let orderPrice = 0;
+        {OrderMenu && OrderMenu.map((item, i) => { 
+            orderPrice = orderPrice + ((parseInt(item.orderAmount)) * item.menuPrice)
+        })}
+        return orderPrice
+    }
 
     const onSubmitHandler=(event)=>{
-        console.log('OrderMenu : ', OrderMenu)
+        
         event.preventDefault();
 
-        {OrderMenu && OrderMenu.map((item, i) => { 
+        const totalPrice = totalOrderPrice();
+        console.log('totalPrice',totalPrice)
 
-            const body={
-                menusMenuNumber:item.menuNumber,
-                orderAmount:item.orderAmount
-            }
-
-            if(parseInt(item.orderAmount) !== 0) {
-                dispatch(createOrderHistory(body))
-                .then(response=>{
-                    console.log(response)
-                })
-            }
-        }); 
-    }
-               
-
+        const order = {
+            orderPrice:totalPrice,
+            memberMemberNo:restaurantNo,
+            orderTableNumber:9, //일단 테이블 넘버 9로...
+        }
+       
+        Axios.post('/api/order', order)
+            .then(response => {
+                if(response.data){
+                    console.log(response.data)
+                    setOrderNumber(response.data.orderNumber);
+                }
+            })
+            
     }
 
     const renderCards = MenuInfo.map((menu, index) => {
@@ -95,6 +105,7 @@ function Menu(props) {
             <Row gutter={[32,16]}>
                 
                     {renderCards}
+                    <Orders OrderMenu={OrderMenu} OrderNumber={OrderNumber} onSubmitHandler={onSubmitHandler}/>
                 
             </Row>
             <div>

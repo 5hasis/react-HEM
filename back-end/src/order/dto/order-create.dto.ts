@@ -6,6 +6,6 @@ export class OrderCreateDto {
 
     orderPrice : number
 
-    member : Member
+    memberMemberNo : number
 
 }
