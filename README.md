@@ -2,16 +2,14 @@
 <br>
 
 ## 개발기간 & 참여인원
-- 2021.09.06 - 2021.09.19 (약 2주)
-- 팀 프로젝트(3명)
+- 2021.09.29 - ing
+- 팀 프로젝트(2명)
 
 <br>
-
 ## 개발 환경
-- Programming Language : Typescript
-- DBMS : PostgreSQL
-- Technology : NestJs, TypeORM, jwt, passport, bcrypt
-- Tool : VSCode, ERD cloud
+- Programming Language : JavaScript
+- Technology : React.js
+- Tool : VSCode, Github
 
 <br>
 
