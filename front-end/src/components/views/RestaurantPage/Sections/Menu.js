@@ -3,10 +3,12 @@ import { Button, Col,Row } from 'antd';
 import Axios from 'axios';
 import Orders from './Orders';
 
+
 function Menu(props) {
 
     const [OrderMenu, setOrderMenu] = useState([]);
     const MenuInfo = props.Menus
+
     const restaurantNo = props.restaurantNo;
 
     useEffect(() => {
@@ -15,6 +17,14 @@ function Menu(props) {
             return {menuNumber:item.menuNumber, menuPrice:item.menuPrice, orderAmount:0}
         })
         //console.log(OrderArr)
+
+
+    useEffect(() => {
+        console.log('props.Menus : ',props.Menus);
+        const OrderArr = MenuInfo.map((item,index)=>{ 
+            return {menuNumber:item.menuNumber, menuName:item.menuName, orderAmount:0}
+        })
+        console.log(OrderArr)
         setOrderMenu(...OrderMenu,OrderArr);
 
     }, [props.Menus])
@@ -22,7 +32,7 @@ function Menu(props) {
     
     const [inputs, setInputs] = useState({
         orderAmount: ''
-      })   
+      })      
     
     const onOrderNumberHandler= (index) => (event)=>{
         
@@ -39,7 +49,7 @@ function Menu(props) {
             } 
         }); 
         setOrderMenu(newArr);
-        
+
     }
 
     
@@ -52,6 +62,7 @@ function Menu(props) {
         })}
         return orderPrice
     }
+
 
     const onSubmitHandler=(event)=>{
         
@@ -73,7 +84,7 @@ function Menu(props) {
                     setOrderNumber(response.data.orderNumber);
                 }
             })
-            
+
     }
 
     const renderCards = MenuInfo.map((menu, index) => {

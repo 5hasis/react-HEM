@@ -25,11 +25,11 @@ export class OrderHistoryService {
         const menu = await this.menuRepository.findOne(menusMenuNumber);
         const order = await this.orderRepository.findOne(orderOrderNumber);
 
+
         const orders = new OrderHistory();
         orders.orderAmount = orderAmount;
         orders.menus = menu;
         orders.order = order;
-
 
         await this.orderHistoryRepository.save(orders)
         return orders

@@ -14,9 +14,10 @@ export class OrderService {
         private memberRepository:MemberRepository,
     ){}
 
+
     async createOrder({orderPrice, orderTableNumber,memberMemberNo} : OrderCreateDto):Promise<Order>{
         const member = await this.memberRepository.findOne(memberMemberNo);
-
+      
         const order = this.orderRepository.create(
             {
                 orderPrice,
