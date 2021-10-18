@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Typography, Button } from 'antd';
-import { useHistory } from "react-router-dom";
+import { Typography } from 'antd';
 import Axios from 'axios';
-import MyReservationPage from './MyReservationPage';
 
 
 const {Title} = Typography

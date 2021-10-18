@@ -1,8 +1,6 @@
-import React,{useState,useEffect} from 'react';
-import { Row, Col, Typography, Button } from 'antd';
+import React,{useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {reservationUser} from '../../../_actions/user_action';
-import axios from 'axios';
 
 
 
@@ -11,7 +9,6 @@ function ReservationPage(props) {
     
     const memberNo = props.match.params.restaurantNo
     
-    const [setText] = useState('');
     const dispatch=useDispatch();
 
     const [Name, setName] = useState("")

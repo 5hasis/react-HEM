@@ -42,12 +42,14 @@ function RestaurantDetailPage(props) {
 
     let history = useHistory();
 
-    const updateBtn = (event) => {
+    const myRestaurantBtn = () => {
         history.push({
-            pathname:'/myRestaurantInfo',
+            pathname:`/myRestaurant/${restaurantNo}`,
             state:RestaurantDetail
         });
     }
+
+    
 
     const makeReservation =(event) =>{
         history.push({
@@ -55,13 +57,6 @@ function RestaurantDetailPage(props) {
             state:RestaurantDetail
 
         })
-    }
-
-    const createMenu = (event) => {
-        history.push({
-            pathname:`/menu/${restaurantNo}`,
-            state:RestaurantDetail
-        });
     }
 
     return (
@@ -72,18 +67,18 @@ function RestaurantDetailPage(props) {
             <Title level={4}>{RestaurantDetail.memberPhone}</Title>
 
             <Button onClick={makeReservation}>예약하기</Button>&nbsp;&nbsp;
-            <Button onClick={updateBtn}>내 가게 수정</Button>
+            <Button onClick={myRestaurantBtn}>내 가게 보기</Button>
+           
             <br />
             
             <div style={{marginTop:'3rem'}}>
                 <Title level={2}>메뉴 &nbsp;&nbsp;
-                    <Button onClick={createMenu}>메뉴 추가</Button>
+                    
                 </Title>
                 <hr />
                 
             </div>
             <Menu Menus={Menus} restaurantNo={restaurantNo} />
-
         </div>
     )
 }

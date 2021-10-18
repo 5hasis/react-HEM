@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import { createMenu } from '../../../_actions/user_action';
 import {useDispatch} from 'react-redux';
 import Axios from 'axios';
