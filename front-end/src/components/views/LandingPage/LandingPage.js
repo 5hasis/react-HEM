@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Typography, Button } from 'antd';
+import { Row, Col, Typography } from 'antd';
 
 import Axios from 'axios';
 

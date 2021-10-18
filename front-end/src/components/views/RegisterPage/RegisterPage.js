@@ -1,10 +1,8 @@
-import React, { useState,Component } from 'react';
+import React, { useState } from 'react';
 import PopupDom from './PopupDom';
 import PopupPostCode from './PopupPostCode';
 import {useDispatch} from 'react-redux';
 import {registerUser} from '../../../_actions/user_action';
-import axios from 'axios';
-import {withRouter} from 'react-router-dom'; 
 
 
 function RegisterPage(props){
