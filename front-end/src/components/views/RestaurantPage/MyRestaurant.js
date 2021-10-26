@@ -28,6 +28,13 @@ function MyRestaurant(props) {
         });
     }
 
+    const orderList = () => {
+        history.push({
+            pathname:`/myRestaurant/orderlist/${restaurantNo}`,
+            state:restaurantNo
+        });
+    }
+
 
     return (
         <div style={{width:'65%', margin:'3rem auto', textAlign:'center'}}>
@@ -36,6 +43,9 @@ function MyRestaurant(props) {
             
             <div>
             <Button onClick={createMenu}>메뉴 추가</Button>
+            </div><br/>
+            <div>
+            <Button onClick={orderList}>주문 내역</Button>
             </div>
             <br />
             <div>
