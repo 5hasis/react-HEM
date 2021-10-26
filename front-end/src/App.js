@@ -16,6 +16,8 @@ import RestaurantDetailPage from "./components/views/RestaurantPage/RestaurantDe
 import MyRestaurantInfo from "./components/views/RestaurantPage/MyRestaurantInfo";
 import MyReservationPage from "./components/views/ReservationPage/MyReservationPage";
 import MyReservationDetailPage from "./components/views/ReservationPage/MyReservationDetailPage";
+import CreateMenuPage from "./components/views/MenuPage/CreateMenuPage";
+
 
 
 function App() {
@@ -45,11 +47,14 @@ function App() {
           <Route exact path="/registerSuccess" component={RegisterSuccessPage} />
           <Route exact path="/reservation/:restaurantNo" component={ReservationPage} />
           <Route exact path="/reservationSuccess" component={ReservationSuccessPage} />
+
           <Route exact path="/myReservation" component={MyReservationPage} />
+
           <Route exact path="/restaurant/:restaurantNo" component={RestaurantDetailPage} />
           <Route exact path="/myRestaurantInfo" component={MyRestaurantInfo} />
           <Route exact path="/myReservation/:reservationNumber" component={MyReservationDetailPage} />
 
+          <Route exact path="/menu/:restaurantNo" component={CreateMenuPage} />
 
         </Switch>
       </div>

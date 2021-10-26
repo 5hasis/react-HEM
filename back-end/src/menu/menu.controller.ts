@@ -4,23 +4,22 @@ import { Menu } from './menu.entity';
 import { MenuService } from './menu.service';
 import {MenuCreateDto} from './dto/menu-create.dto'
 
-@Controller('menu')
+@Controller('/api/menu')
 export class MenuController {
 
     constructor(
         private menuService:MenuService
     ){}
 
-    // 메뉴 등록
+    // 메뉴 등록.
     @Post()
     @UseGuards(AuthGuard())
     insertMenu(
         @Body() menuCreateDto : MenuCreateDto,
-        @Request() req
-        ){
-            menuCreateDto.member = req.user
+        @Request() req ) :Promise<Menu>{
+            const member = req.user;            
             // console.log(menuCreateDto.member.memberName)
-            this.menuService.createMenu(menuCreateDto)
+            return this.menuService.createMenu(menuCreateDto, member)
     }
 
     // 메뉴 리스트

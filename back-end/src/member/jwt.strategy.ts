@@ -14,6 +14,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     ) {
         super({
             secretOrKey: process.env.JWT_SECRET || config.get('jwt.secret'),
+            expiresIn: config.get('jwt.expiresIn'),
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
         })
     }
