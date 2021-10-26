@@ -12,14 +12,6 @@ function Menu(props) {
     const restaurantNo = props.restaurantNo;
 
     useEffect(() => {
-        //console.log('props.Menus : ',props.Menus);
-        const OrderArr = MenuInfo.map((item,index)=>{ 
-            return {menuNumber:item.menuNumber, menuPrice:item.menuPrice, orderAmount:0}
-        })
-        //console.log(OrderArr)
-
-
-    useEffect(() => {
         console.log('props.Menus : ',props.Menus);
         const OrderArr = MenuInfo.map((item,index)=>{ 
             return {menuNumber:item.menuNumber, menuName:item.menuName, orderAmount:0}
