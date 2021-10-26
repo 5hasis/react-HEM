@@ -44,13 +44,13 @@ function MyReservationPage() {
     const renderCards = Reservations.map((reservation, index) => {
         
         return <Col lg={6} md={8} xs={24} key={index}>
-            <a href={`/myReservation/${reservation.reservationNo}`}>
+            <a href={`/myReservation/${reservation.reservationNumber}`}>
                 <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
                 {reservation.memberName}<br/>
                 {reservation.reservationName}<br/>
                 {change_date(reservation.reservationDate)}<br/> 
                 {reservation.reservationTime}<br/>
-                {reservation.reservationPeople}
+                {reservation.reservationPeople}명
 
                 </div>
                 </a>
