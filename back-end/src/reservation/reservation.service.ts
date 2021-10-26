@@ -42,10 +42,10 @@ export class ReservationService {
         return reservation
     }
    
-    async deleteReservation(reservationName:string):Promise<void>{
-        const result=await this.reservationRepository.delete(reservationName);
+    async deleteReservation(reservationNumber:number):Promise<void>{
+        const result=await this.reservationRepository.delete(reservationNumber);
         if(result.affected===0){
-            throw new NotFoundException(`Can't find reservation with name ${reservationName}`)
+            throw new NotFoundException(`Can't find reservation with name ${reservationNumber}`)
         }
     }
     
