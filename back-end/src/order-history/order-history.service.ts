@@ -34,4 +34,15 @@ export class OrderHistoryService {
         await this.orderHistoryRepository.save(orders)
         return orders
     }
+
+    async getOrderList(memberNo : number) {
+
+        const orderList = await this.orderHistoryRepository
+                            .createQueryBuilder('orderHistory')
+                            .leftJoinAndSelect('orderHistory.order', 'order')
+                            .where('order.memberNo = :memberNo', { memberNo: memberNo })
+                            .getMany();
+
+        return orderList;
+    }
 }
