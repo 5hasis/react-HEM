@@ -5,12 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrderRepository } from './order.repository';
 import { MemberModule } from 'src/member/member.module';
 import { MemberRepository } from 'src/member/member.repository';
+import { OrderHistoryRepository } from 'src/order-history/order-history.repository';
 
 @Module({
     imports: [
         MemberModule,
         TypeOrmModule.forFeature([MemberRepository]),
-        TypeOrmModule.forFeature([OrderRepository])
+        TypeOrmModule.forFeature([OrderRepository]),
+        TypeOrmModule.forFeature([OrderHistoryRepository])
     ],
     providers: [OrderService],
     controllers: [OrderController]

@@ -40,7 +40,8 @@ export class OrderHistoryService {
         const orderList = await this.orderHistoryRepository
                             .createQueryBuilder('orderHistory')
                             .leftJoinAndSelect('orderHistory.order', 'order')
-                            .where('order.memberNo = :memberNo', { memberNo: memberNo })
+                            .leftJoinAndSelect('orderHistory.menus', 'menus')
+                            //.where('orderHistory.memberNo = :memberNo', { memberNo: memberNo })
                             .getMany();
 
         return orderList;
