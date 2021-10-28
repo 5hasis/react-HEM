@@ -25,10 +25,10 @@ function MyRestaurantOrderList(props) {
             <a>
                 <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
                     <div style={{display: 'inline-block'}}>
-                        주문 번호 : {orderlist.order.orderNumber}
+                        주문 번호 : {orderlist.orderNumber}
                         <hr />
-                        테이블 번호 : {orderlist.order.orderTableNumber}<br/>
-                        총 주문 금액 : {orderlist.order.orderPrice}원<br/>
+                        테이블 번호 : {orderlist.orderTableNumber}<br/>
+                        총 주문 금액 : {orderlist.orderPrice}원<br/>
                             
                     </div>
                 </div>
