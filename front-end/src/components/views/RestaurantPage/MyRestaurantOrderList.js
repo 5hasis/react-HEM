@@ -41,7 +41,7 @@ function MyRestaurantOrderList(props) {
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>우리 가게 주문 내역</Title><hr/>
             <Row gutter={[32,16]}>
-                    {renderCards}
+                    {renderCards} 
             </Row>
         </div>
     )
