@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MemberRepository } from 'src/member/member.repository';
+import { OrderHistory } from 'src/order-history/order-history.entity';
 import { OrderCreateDto } from './dto/order-create.dto';
 import { Order } from './order.entity';
 import { OrderRepository } from './order.repository';
@@ -29,6 +30,7 @@ export class OrderService {
     }
 
     async getOrderList(memberNo : number):Promise<Order[]>{
+        
         return await this.orderRepository.find({member:{
             memberNo
         }})

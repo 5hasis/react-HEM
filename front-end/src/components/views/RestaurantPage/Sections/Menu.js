@@ -85,7 +85,7 @@ function Menu(props) {
     const renderCards = MenuInfo.map((menu, index) => {
         
         return <Col lg={6} md={8} xs={24} key={index}>
-            <a>
+            
                 <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
                     <div style={{display: 'inline-block'}}>
                             {menu.menuName}<br/>
@@ -101,7 +101,7 @@ function Menu(props) {
                         
                     </div>
                 </div>
-            </a>
+            
             <br />
         </Col>
     })
