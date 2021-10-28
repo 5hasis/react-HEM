@@ -1,30 +1,33 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
+import Axios from 'axios';
 import {useDispatch} from 'react-redux';
 import {reservationUser} from '../../../_actions/user_action';
+import {useHistory,useLocation} from 'react-router-dom'
+import {updateReservationUser} from '../../../_actions/user_action';
 
 
 
 
-function MyReservationInfo(props) {
-    
-    const memberNo = props.match.params.restaurantNo
+function MyReservationInfo() {
     
     const dispatch=useDispatch();
-
+    const location=useLocation();
+    const reservation=location.state;
+    
     const [Name, setName] = useState("")
     const [Phone, setPhone] = useState("")
     const [RvDate, setRvDate] = useState("")
     const [RvHour, setRvHour] = useState(10)
     const [RvMinute, setRvMinute] = useState("00")
     const [RvNumber, setRvNumber] = useState(1)
-
+    const [No, setNo] = useState(0)
 
     const onNameHandler=(event)=>{
         setName(event.currentTarget.value)
     }
-    const onPhoneHandler=(event)=>{
-        setPhone(event.currentTarget.value)
-    }
+    // const onPhoneHandler=(event)=>{
+    //     setPhone(event.currentTarget.value)
+    // }
     const onRvDateHandler=(event)=>{
         setRvDate(event.currentTarget.value)
     }
@@ -39,46 +42,35 @@ function MyReservationInfo(props) {
     }
 
     useEffect(() => {
-
-        Axios.get(`/api/reservation/detail/`, member)
-            .then(response => {
-
-                if(response.data){
-                    //console.log(response.data)
-                    //setMyInfo(response.data)
-                    setName(response.data.memberName)
-                    setPhone(response.data.memberPhone)
-                    setAddress(response.data.memberAddress)
-                    setId(response.data.memberId)
-                    //setPassword(response.data.memberPw)
-                }
-                else{
-                    alert('식당 정보를 가져오는데 실패')
-                }
-                
-            })
+        setNo(reservation.reservationNo)
+        setName(reservation.reservationName)
+        setPhone(reservation.reservationPhone)
+        setRvHour(reservation.reservationTime.substring(0,2))
+        setRvMinute(reservation.reservationTime.substring(3,5))
+        setRvNumber(reservation.reservationPeople)
+        
     }, [])
-   
 
+    let history = useHistory();
     const onSubmitHandler=(event)=>{
         event.preventDefault();
 
 
         let body={
+            reservationNo:No,
             reservationName:Name,
-            reservationPhone:Phone,
             reservationDate:RvDate,
             reservationTime:RvHour+':'+RvMinute,
             reservationPeople:RvNumber,
-            memberMemberNo:memberNo
+            //memberMemberNo:memberNo
         }
 
-        dispatch(reservationUser(body))
+        dispatch(updateReservationUser(body))
         .then(response=>{
             
-            if(response.payload.reservationSuccess){
-                console.log(memberNo)
-                props.history.push("/reservationSuccess")
+            if(response.payload){
+                //console.log(memberNo)
+                history.push("/reservationSuccess")
             }else{
                 alert("예약을 실패하였습니다.")
             }
@@ -96,8 +88,8 @@ function MyReservationInfo(props) {
         <form style={{display:'flex',flexDirection:'column',width:'20%'}} onSubmit={onSubmitHandler}>
             <label>예약자 이름</label>
             <input type="text" value={Name} onChange={onNameHandler}/>
-            <label>전화번호</label>
-            <input type="text" value={Phone} onChange={onPhoneHandler}/>
+            <label>전화번호:{Phone}</label>
+            
             <label>예약 날짜</label>
             <input type="date" value={RvDate} onChange={onRvDateHandler}/>     
             <label>예약 시간</label>
@@ -109,7 +101,7 @@ function MyReservationInfo(props) {
             <input type="number" value={RvNumber} min={1} onChange={onRvNumberHandler}/>
             
             <br/>
-            <button type="submit">예약하기</button>
+            <button type="submit">수정하기</button>
             {/* <button onClick={onReset}>Reset</button> */}
         </form>
     </div>
