@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { Typography } from 'antd';
+import { Button,Typography } from 'antd';
 import Axios from 'axios';
+import { useHistory, useLocation } from 'react-router';
 
 
 const {Title} = Typography
 
 function MyReservationDetailPage(props) {
 
+    const history = useHistory();
     const reservationNo = props.match.params.reservationNumber
     //const restaurantNo = props.match.params.restaurantNo
 
     const [ReservationDetail, setReservationDetail] = useState([])
+    const [Reservations, setReservations] = useState([])
 
+    // const onRemove = reservationNumber => {
+       
+    //     setStudents(students.filter(student => student.id !== id));
+    //   };
+
+    const updateBtn = (event) => {
+        history.push({
+            pathname:`/reservation/${reservationNo}`,
+            //state:reservation,
+        });
+    }
+        
+    
     function change_date(published_at){
         var moment = require('moment');
         
@@ -33,15 +49,19 @@ function MyReservationDetailPage(props) {
     }, [])
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
-            <Title level={2}>{ReservationDetail.reservationName}</Title>
+            <Title level={2}>{ReservationDetail.reservationNumber}</Title>
             <hr />
             <Title level={4}>{ReservationDetail.reservationName}</Title>
             <Title level={4}>{change_date(ReservationDetail.reservationDate)}</Title>
             <Title level={4}>{ReservationDetail.reservationTime}</Title>
             <Title level={4}>{ReservationDetail.reservationPeople}명</Title>
 
-            {/* <Button onClick={updateReservation}>수정하기</Button>
-            <Button onClick={deleteReservation}>삭제하기</Button> */}
+            <Button onClick={updateBtn}>수정하기</Button>&nbsp;&nbsp;
+            <Button >삭제하기</Button>
+            {/* <button onClick={() => onRemove(reservationNumber)}>삭제</button> */}
+
+
+            
 
         </div>
     )

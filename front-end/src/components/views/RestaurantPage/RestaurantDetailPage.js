@@ -79,7 +79,7 @@ function RestaurantDetailPage(props) {
                 
             </div>
 
-            <Menu Menus={Menus} restaurantNo={restaurantNo} />
+            <Menu menus={Menus} restaurantNo={restaurantNo} />
         </div>
     )
 }

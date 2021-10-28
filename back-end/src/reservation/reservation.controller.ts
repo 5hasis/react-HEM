@@ -31,9 +31,9 @@ export class ReservationController {
         return this.reservationService.getReservationByPhone(reservationPhone);
     }
 
-    @Delete('/:reservationName')
-    deleteReservation(@Param('reservationName') reservationName:string):Promise<void>{
-        return this.reservationService.deleteReservation(reservationName);
+    @Delete('delete/:reservationNumber')
+    deleteReservation(@Param('reservationNumber') reservationNumber:number):Promise<void>{
+        return this.reservationService.deleteReservation(reservationNumber);
     }
     
     // @Patch('/:reservationName')
