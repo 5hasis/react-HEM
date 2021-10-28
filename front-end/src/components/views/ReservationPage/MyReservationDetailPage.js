@@ -9,9 +9,7 @@ const {Title} = Typography
 function MyReservationDetailPage(props) {
 
     const history = useHistory();
-    const reservationNo = props.match.params.reservationNumber
-    //const restaurantNo = props.match.params.restaurantNo
-
+    const reservationNo = props.match.params.reservationNo
     const [ReservationDetail, setReservationDetail] = useState([])
     const [Reservations, setReservations] = useState([])
 
@@ -22,8 +20,8 @@ function MyReservationDetailPage(props) {
 
     const updateBtn = (event) => {
         history.push({
-            pathname:`/reservation/${reservationNo}`,
-            //state:reservation,
+            pathname:`/myReservationInfo`,
+            state:ReservationDetail,
         });
     }
         
@@ -49,7 +47,7 @@ function MyReservationDetailPage(props) {
     }, [])
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
-            <Title level={2}>{ReservationDetail.reservationNumber}</Title>
+            <Title level={2}>{ReservationDetail.reservationNo}</Title>
             <hr />
             <Title level={4}>{ReservationDetail.reservationName}</Title>
             <Title level={4}>{change_date(ReservationDetail.reservationDate)}</Title>

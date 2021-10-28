@@ -5,7 +5,7 @@ import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, ManyToOne } from "t
 export class Reservation extends BaseEntity {
     
     @PrimaryGeneratedColumn()
-    reservationNumber : number;
+    reservationNo : number;
 
     @Column()
     reservationName : string;
@@ -17,7 +17,7 @@ export class Reservation extends BaseEntity {
     reservationDate: Date;
 
     @Column()
-    reservationTime : String;
+    reservationTime : string;
 
     @Column()
     reservationPeople : number;

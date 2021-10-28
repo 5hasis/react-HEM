@@ -7,6 +7,7 @@ import { ReservationRepository } from './reservation.repository';
 import { Reservation } from './reservation.entity';
 import { Member } from 'src/member/member.entity';
 import { MemberRepository } from 'src/member/member.repository';
+import { UpdateReservationDto } from './dto/update-reservation.dto';
 
 @Injectable()
 export class ReservationService {
@@ -37,22 +38,42 @@ export class ReservationService {
         return found;
     }
 
-    async getDetailByNo(reservationNumber:number):Promise<Reservation> {
-        const reservation = this.reservationRepository.findOne({reservationNumber});
+    async getDetailByNo(reservationNo:number):Promise<Reservation> {
+        const reservation = this.reservationRepository.findOne({reservationNo});
         return reservation
     }
    
-    async deleteReservation(reservationNumber:number):Promise<void>{
-        const result=await this.reservationRepository.delete(reservationNumber);
+    async deleteReservation(reservationNo:number):Promise<void>{
+        const result=await this.reservationRepository.delete(reservationNo);
         if(result.affected===0){
-            throw new NotFoundException(`Can't find reservation with name ${reservationNumber}`)
+            throw new NotFoundException(`Can't find reservation with name ${reservationNo}`)
         }
     }
     
-    // async updateReservation(reservationPhone:string):Promise<Reservation>{
-    //     const reservation=await this.getReservationByPhone(reservationPhone);
-
-    //     await this.reservationRepository.save(reservation);
-    //     return reservation;
-    // }
+    async getReservationByNo(reservationNo:number):Promise<Reservation>{
+        const result=this.reservationRepository
+                        .createQueryBuilder('reservation')
+                        .where('reservation.reservationNo=:reservationNo',{reservationNo})
+                        .getOne();
+        return result;
+    }
+   
+    async updateReservation(updateReservationDto:UpdateReservationDto,reservation:Reservation):Promise<Reservation>{
+        const{
+            reservationNo,
+            reservationName,
+            reservationDate,
+            reservationTime,
+            reservationPeople
+        }=updateReservationDto;
+        
+        const myReservation=await this.getReservationByNo(reservationNo);
+        
+        myReservation.reservationName=reservationName;
+        myReservation.reservationDate=reservationDate;
+        myReservation.reservationTime=reservationTime;
+        myReservation.reservationPeople=reservationPeople;
+        await this.reservationRepository.save(myReservation);
+        return myReservation;
+    }
 }

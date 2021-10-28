@@ -49,6 +49,16 @@ export function reservationUser(dataToSubmit){
 
 }
 
+export function updateReservationUser(dataToSubmit){
+
+    const request=axios.patch('/api/reservation/update',dataToSubmit)
+        .then(response=>response.data)
+    return {
+        type:RESERVATION_USER,
+        payload:request
+    }
+}
+
 export function createMenu(dataToSubmit){
 
     const token = localStorage.getItem('accessToken');
