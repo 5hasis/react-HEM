@@ -11,12 +11,6 @@ function MyReservationDetailPage(props) {
     const history = useHistory();
     const reservationNo = props.match.params.reservationNo
     const [ReservationDetail, setReservationDetail] = useState([])
-    const [Reservations, setReservations] = useState([])
-
-    // const onRemove = reservationNumber => {
-       
-    //     setStudents(students.filter(student => student.id !== id));
-    //   };
 
     const updateBtn = (event) => {
         history.push({
@@ -25,6 +19,14 @@ function MyReservationDetailPage(props) {
         });
     }
         
+    const deleteBtn =(event)=>{
+        Axios.delete(`/api/reservation/delete/${reservationNo}`)
+        .then(response => {
+            
+                history.push('/myReservation')
+            
+        })
+    }
     
     function change_date(published_at){
         var moment = require('moment');
@@ -45,6 +47,7 @@ function MyReservationDetailPage(props) {
                 }
             })
     }, [])
+
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>{ReservationDetail.reservationNo}</Title>
@@ -55,8 +58,7 @@ function MyReservationDetailPage(props) {
             <Title level={4}>{ReservationDetail.reservationPeople}명</Title>
 
             <Button onClick={updateBtn}>수정하기</Button>&nbsp;&nbsp;
-            <Button >삭제하기</Button>
-            {/* <button onClick={() => onRemove(reservationNumber)}>삭제</button> */}
+            <Button onClick={deleteBtn}>삭제하기</Button>
 
 
             

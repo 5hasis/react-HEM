@@ -13,7 +13,7 @@ function MyReservationInfo() {
     const dispatch=useDispatch();
     const location=useLocation();
     const reservation=location.state;
-    console.log(reservation)
+    
     const [Name, setName] = useState("")
     const [Phone, setPhone] = useState("")
     const [RvDate, setRvDate] = useState("")

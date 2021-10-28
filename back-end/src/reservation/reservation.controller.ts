@@ -38,7 +38,7 @@ export class ReservationController {
         return this.reservationService.getReservationByNo(reservationNo);
     }
 
-    @Delete('delete/:reservationNo')
+    @Delete('/delete/:reservationNo')
     deleteReservation(@Param('reservationNo') reservationNo:number):Promise<void>{
         return this.reservationService.deleteReservation(reservationNo);
     }
