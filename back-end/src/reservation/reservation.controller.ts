@@ -1,8 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Member } from 'src/member/member.entity';
 import { CreateReservationDto } from './dto/create-reservation.dto';
+import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { Reservation } from './reservation.entity';
 import { ReservationService } from './reservation.service';
+import { GetReservation } from './get-reservation.decorator';
 
 @Controller('/api/reservation')
 export class ReservationController {
@@ -21,9 +23,9 @@ export class ReservationController {
         return this.reservationService.createReservation(createReservationDto);
     }
 
-    @Get('/detail/:reservationNumber')
-    getDetailByNo(@Param('reservationNumber') reservationNumber:number):Promise<Reservation> {
-        return this.reservationService.getDetailByNo(reservationNumber);
+    @Get('/detail/:reservationNo')
+    getDetailByNo(@Param('reservationNo') reservationNo:number):Promise<Reservation> {
+        return this.reservationService.getDetailByNo(reservationNo);
     }
 
     @Get('/:reservationPhone')
@@ -31,13 +33,20 @@ export class ReservationController {
         return this.reservationService.getReservationByPhone(reservationPhone);
     }
 
-    @Delete('/:reservationName')
-    deleteReservation(@Param('reservationName') reservationName:string):Promise<void>{
-        return this.reservationService.deleteReservation(reservationName);
+    @Get('/myReservationInfo')
+    getMyReservationByNo(@GetReservation() reservationNo:number):Promise<Reservation>{
+        return this.reservationService.getReservationByNo(reservationNo);
+    }
+
+    @Delete('/delete/:reservationNo')
+    deleteReservation(@Param('reservationNo') reservationNo:number):Promise<void>{
+        return this.reservationService.deleteReservation(reservationNo);
     }
     
-    // @Patch('/:reservationName')
-    // updateReservation(@Param('reservationName') reservationName:string):Promise<Reservation>{
-    //     return this.reservationService.updateReservation(reservationName);
-    // }
+    @Patch('/update')
+    updateReservation(@Body() updateReservationDto:UpdateReservationDto,
+        @GetReservation() reservation:Reservation):Promise<Reservation>{
+        return this.reservationService.updateReservation(updateReservationDto,reservation);
+    }
+    
 }

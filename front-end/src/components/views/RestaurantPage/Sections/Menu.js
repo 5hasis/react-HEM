@@ -7,19 +7,19 @@ import Orders from './Orders';
 function Menu(props) {
 
     const [OrderMenu, setOrderMenu] = useState([]);
-    const MenuInfo = props.Menus
+    const MenuInfo = props.menus
 
     const restaurantNo = props.restaurantNo;
 
     useEffect(() => {
-        console.log('props.Menus : ',props.Menus);
+        console.log('props.menus : ',props.menus);
         const OrderArr = MenuInfo.map((item,index)=>{ 
-            return {menuNumber:item.menuNumber, menuName:item.menuName, orderAmount:0}
+            return {menuNumber:item.menuNumber, menuName:item.menuName, menuPrice:item.menuPrice, orderAmount:0}
         })
         console.log(OrderArr)
         setOrderMenu(...OrderMenu,OrderArr);
 
-    }, [props.Menus])
+    }, [props.menus])
 
     
     const [inputs, setInputs] = useState({
@@ -49,9 +49,11 @@ function Menu(props) {
 
     function totalOrderPrice () {
         let orderPrice = 0;
+        console.log(OrderMenu)
         {OrderMenu && OrderMenu.map((item, i) => { 
             orderPrice = orderPrice + ((parseInt(item.orderAmount)) * item.menuPrice)
         })}
+        console.log(orderPrice)
         return orderPrice
     }
 
@@ -60,6 +62,7 @@ function Menu(props) {
         
         event.preventDefault();
 
+        
         const totalPrice = totalOrderPrice();
         console.log('totalPrice',totalPrice)
 

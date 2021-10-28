@@ -9,7 +9,7 @@ export class CreateReservationDto {
     @IsNotEmpty()
     reservationDate: Date;
     @IsNotEmpty()
-    reservationTime : String;
+    reservationTime : string;
     @IsNotEmpty()
     reservationPeople : number;
     @IsNotEmpty()

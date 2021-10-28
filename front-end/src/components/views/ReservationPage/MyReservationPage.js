@@ -9,6 +9,8 @@ import { render } from 'react-dom';
 
 function MyReservationPage() {
 
+
+
     const [PhoneNumber, setPhoneNumber]=useState('1')
     const [Reservations, setReservations] = useState([])
     
@@ -44,7 +46,7 @@ function MyReservationPage() {
     const renderCards = Reservations.map((reservation, index) => {
         
         return <Col lg={6} md={8} xs={24} key={index}>
-            <a href={`/myReservation/${reservation.reservationNumber}`}>
+            <a href={`/myReservation/${reservation.reservationNo}`}>
                 <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
                 {reservation.memberName}<br/>
                 {reservation.reservationName}<br/>
