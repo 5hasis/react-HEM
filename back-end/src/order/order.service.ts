@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MemberRepository } from 'src/member/member.repository';
 import { OrderHistory } from 'src/order-history/order-history.entity';
+import { OrderHistoryRepository } from 'src/order-history/order-history.repository';
 import { OrderCreateDto } from './dto/order-create.dto';
 import { Order } from './order.entity';
 import { OrderRepository } from './order.repository';
@@ -13,6 +14,7 @@ export class OrderService {
         @InjectRepository(OrderRepository)
         private orderRepository:OrderRepository,
         private memberRepository:MemberRepository,
+        private orderHistoryRepository:OrderHistoryRepository
     ){}
 
 
@@ -55,5 +57,7 @@ export class OrderService {
             throw new NotFoundException(`Can't find order`)
         }
     }
+
+    
 
 }
