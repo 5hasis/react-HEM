@@ -30,6 +30,7 @@ export class ReservationService {
     async getReservationByPhone(reservationPhone:string):Promise<Reservation[]>{
         const found=await this.reservationRepository
                                 .createQueryBuilder('reservation')
+                                .leftJoinAndSelect('reservation.member','member')
                                 .where('reservation.reservationPhone = :reservationPhone', {reservationPhone:reservationPhone})
                                 .getMany();
         if(!found){
@@ -76,4 +77,8 @@ export class ReservationService {
         await this.reservationRepository.save(myReservation);
         return myReservation;
     }
+
+
 }
+
+
