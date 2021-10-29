@@ -10,8 +10,9 @@ function MyReservationDetailPage(props) {
 
     const history = useHistory();
     const reservationNo = props.match.params.reservationNo
+    const memberNo=props.match.params.memberNo
     const [ReservationDetail, setReservationDetail] = useState([])
-
+    const [MemberDetail, setMemberDetail] = useState([])
     const updateBtn = (event) => {
         history.push({
             pathname:`/myReservationInfo`,
@@ -39,7 +40,7 @@ function MyReservationDetailPage(props) {
         Axios.get(`/api/reservation/detail/${reservationNo}`)
             .then(response => {
                 if(response.data){
-                    console.log(response.data)
+                    //console.log(response.data)
                     setReservationDetail(response.data)
                 }
                 else{
@@ -47,10 +48,23 @@ function MyReservationDetailPage(props) {
                 }
             })
     }, [])
+    useEffect(() => {
+        Axios.get(`/api/member/detail/${memberNo}`)
+            .then(response => {
+                if(response.data){
 
+                    setMemberDetail(response.data)
+                    
+                }
+                else{
+                    alert('예약 정보를 가져오는데 실패')
+                }
+            })
+    }, [])
+  
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
-            <Title level={2}>{ReservationDetail.reservationNo}</Title>
+            <Title level={2}>{MemberDetail.memberName}</Title>
             <hr />
             <Title level={4}>{ReservationDetail.reservationName}</Title>
             <Title level={4}>{change_date(ReservationDetail.reservationDate)}</Title>

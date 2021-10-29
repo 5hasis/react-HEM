@@ -8,7 +8,7 @@ export class ReservationRepository extends Repository<Reservation>{
 
     async createReservation(createReservationDto:CreateReservationDto,member:Member):Promise<{reservationSuccess:boolean}>{
         const{
-            memberMemberNo,
+            //memberMemberNo,
             reservationName,
             reservationPhone,
             reservationDate,
