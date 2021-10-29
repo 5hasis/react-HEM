@@ -7,6 +7,7 @@ function Orders(props) {
 
     const OrderMenu = props.OrderMenu;
     const OrderNumber = props.OrderNumber;
+    const restaurantNo = props.restaurantNo;
 
     const dispatch=useDispatch();
     let history = useHistory();
@@ -18,6 +19,7 @@ function Orders(props) {
                 menusMenuNumber:item.menuNumber,
                 orderAmount:item.orderAmount,
                 orderOrderNumber:OrderNumber,
+                memberMemberNo:restaurantNo,
             }
     
             if(parseInt(item.orderAmount) !== 0) {

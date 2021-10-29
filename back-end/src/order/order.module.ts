@@ -12,7 +12,6 @@ import { OrderHistoryRepository } from 'src/order-history/order-history.reposito
         MemberModule,
         TypeOrmModule.forFeature([MemberRepository]),
         TypeOrmModule.forFeature([OrderRepository]),
-        TypeOrmModule.forFeature([OrderHistoryRepository])
     ],
     providers: [OrderService],
     controllers: [OrderController]
