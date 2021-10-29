@@ -21,14 +21,14 @@ export class OrderController {
     }
 
     // // 주문 리스트
-    @Get('/memberNo/:memberNo')
+    @Get('/orderList/:memberNo')
     getOrderList(
         @Param('memberNo') memberNo:number):Promise<Order[]>{
             return this.orderService.getOrderList(memberNo)
     }
 
     // // 주문 상세
-    @Get('/orderNo/:orderNo')
+    @Get('/:orderNo')
     getOrder(
         @Param("orderNo") orderNo:number,
     ):Promise<Order>{

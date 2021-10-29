@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 function LoginPage(props){
 
@@ -19,6 +20,8 @@ function LoginPage(props){
         setPassword(event.currentTarget.value)
     }
 
+    const cookies = new Cookies();
+
     const onSubmitHandler = (event) => {
         event.preventDefault();
 
@@ -30,8 +33,13 @@ function LoginPage(props){
         dispatch(loginUser(body))
             .then(response => {
                 if (response.payload.accessToken) {
-                    //console.log(response.payload.accessToken)
-                    window.localStorage.setItem('accessToken', response.payload.accessToken);
+                    console.log(response.payload.accessToken)
+                    cookies.set('accessToken', response.payload.accessToken, { 
+                        path: '/',
+                        expires: Math.floor(new Date(Date.now() / 1000) + (60 * 60) ),
+                        sameSite: 'strict',
+                    });
+                    //window.localStorage.setItem('accessToken', response.payload.accessToken);
                     props.history.push('/')
                 } else {
                     alert('fail to login!')

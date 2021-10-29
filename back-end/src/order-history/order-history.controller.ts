@@ -16,9 +16,8 @@ export class OrderHistoryController {
             return this.orderHistoryService.createOrder(orderHistoryCreateDto);
     }
 
-    @Get('/memberNo/:memberNo')
-    getOrderList(
-        @Param('memberNo') memberNo:number){
-            return this.orderHistoryService.getOrderList(memberNo)
+    @Get('/orderList/:orderNumber')
+    getOrderHistory(@Param('orderNumber') orderNumber:number):Promise<OrderHistory[]>{
+        return this.orderHistoryService.getOrderHistory(orderNumber)
     }
 }

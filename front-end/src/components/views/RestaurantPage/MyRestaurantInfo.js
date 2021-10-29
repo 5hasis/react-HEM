@@ -5,6 +5,7 @@ import {useDispatch} from 'react-redux';
 import PopupDom from '../RegisterPage/PopupDom';
 import PopupPostCode from '../RegisterPage/PopupPostCode';
 import {updateUser} from '../../../_actions/user_action';
+import Cookies from 'universal-cookie';
 
 function MyRestaurantInfo() {
 
@@ -23,7 +24,9 @@ function MyRestaurantInfo() {
 
     useEffect(() => {
 
-        Axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`
+        const cookies = new Cookies();
+
+        Axios.defaults.headers.common['Authorization'] = `Bearer ${cookies.get('accessToken')}`
         Axios.get(`/api/member/myinfo`, member)
             .then(response => {
 

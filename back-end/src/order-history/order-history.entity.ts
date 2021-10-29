@@ -1,3 +1,4 @@
+import { Member } from "src/member/member.entity";
 import { Menu } from "src/menu/menu.entity";
 import { Order } from "src/order/order.entity";
 import { BaseEntity, Column, Entity, ManyToOne, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm"
@@ -19,4 +20,7 @@ export class OrderHistory extends BaseEntity{
     
     @ManyToOne(() => Menu, menu => menu.orderHistory)
     menus: Menu;
+
+    @ManyToOne(() => Member, member => member.orderHistory)
+    member: Member;
 }

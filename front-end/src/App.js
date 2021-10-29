@@ -20,14 +20,13 @@ import CreateMenuPage from "./components/views/MenuPage/CreateMenuPage";
 import MyRestaurant from "./components/views/RestaurantPage/MyRestaurant";
 import MyReservationInfo from "./components/views/ReservationPage/MyReservationInfo";
 import MyRestaurantOrderList from "./components/views/RestaurantPage/MyRestaurantOrderList";
+import OrderDetailPage from "./components/views/RestaurantPage/OrderDetailPage";
 
 
 
 
 function App() {
-  
-    
-  
+
   return (
 
 
@@ -63,7 +62,7 @@ function App() {
 
           <Route exact path="/myReservation/:reservationNo/:memberNo" component={MyReservationDetailPage} />
 
-
+          <Route exact path="/orderDetail/:orderNumber" component={OrderDetailPage} />
           <Route exact path="/menu/:restaurantNo" component={CreateMenuPage} />
 
         </Switch>

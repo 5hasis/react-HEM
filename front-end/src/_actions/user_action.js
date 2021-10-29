@@ -4,6 +4,7 @@ import {
     LOGIN_USER,
     RESERVATION_USER
 } from './types';
+import Cookies from 'universal-cookie';
 //import { config } from "../config";
 
 export function loginUser(dataToSubmit) {
@@ -70,8 +71,8 @@ export function deleteReservation(dataToSubmit){
 }
 
 export function createMenu(dataToSubmit){
-
-    const token = localStorage.getItem('accessToken');
+    const cookies = new Cookies();
+    const token = cookies.get('accessToken');
 
     const request = axios({
         method: 'post',

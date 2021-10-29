@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef  } from 'react'
 import { Button, Col,Row } from 'antd';
 import Axios from 'axios';
 import Orders from './Orders';
@@ -6,6 +6,7 @@ import Orders from './Orders';
 
 function Menu(props) {
 
+    const [TableNo, setTableNo] = useState(0)
     const [OrderMenu, setOrderMenu] = useState([]);
     const MenuInfo = props.menus
 
@@ -44,6 +45,10 @@ function Menu(props) {
 
     }
 
+    const onTableNoHandler=(event)=>{
+        setTableNo(event.currentTarget.value)
+    }
+
     
     const [OrderNumber, setOrderNumber] = useState(0)
 
@@ -57,10 +62,18 @@ function Menu(props) {
         return orderPrice
     }
 
+    const tableNoInput = useRef();
 
     const onSubmitHandler=(event)=>{
         
         event.preventDefault();
+
+        if(TableNo === 0) {
+            
+            alert('테이블 번호를 입력하세요')
+            tableNoInput.current.focus();
+            return
+        }
 
         
         const totalPrice = totalOrderPrice();
@@ -69,7 +82,7 @@ function Menu(props) {
         const order = {
             orderPrice:totalPrice,
             memberMemberNo:restaurantNo,
-            orderTableNumber:9, //일단 테이블 넘버 9로...
+            orderTableNumber:TableNo, 
         }
        
         Axios.post('/api/order', order)
@@ -108,15 +121,23 @@ function Menu(props) {
 
     return (
         <form onSubmit={onSubmitHandler}>
+            <div>
+                <label>테이블 번호 : </label>
+                <input type="number" name="tableNo" value={TableNo} min={0} onChange={onTableNoHandler} 
+                ref={tableNoInput}
+                style={{width:'3rem'}}/>
+            </div>
+            <br />
             <Row gutter={[32,16]}>
                 
                     {renderCards}
-                    <Orders OrderMenu={OrderMenu} OrderNumber={OrderNumber} onSubmitHandler={onSubmitHandler}/>
+                    <Orders OrderMenu={OrderMenu} OrderNumber={OrderNumber} restaurantNo={restaurantNo} onSubmitHandler={onSubmitHandler}/>
                 
             </Row>
-            <div>
+            <div style={{marginBottom:'10%'}}>
                 <Button htmlType="submit">주문하기</Button>
             </div>
+            <br />
         </form>
         
     )
