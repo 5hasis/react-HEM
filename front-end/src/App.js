@@ -60,7 +60,7 @@ function App() {
 
           <Route exact path="/myRestaurant/:restaurantNo" component={MyRestaurant} />
 
-          <Route exact path="/myReservation/:reservationNo" component={MyReservationDetailPage} />
+          <Route exact path="/myReservation/:reservationNo/:memberNo" component={MyReservationDetailPage} />
 
           <Route exact path="/orderDetail/:orderNumber" component={OrderDetailPage} />
           <Route exact path="/menu/:restaurantNo" component={CreateMenuPage} />
