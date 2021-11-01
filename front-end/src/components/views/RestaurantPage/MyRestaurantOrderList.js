@@ -12,17 +12,18 @@ function MyRestaurantOrderList(props) {
     const [OrderList, setOrderList] = useState([])
 
     useEffect(() => {
-        Axios.get(`/api/orderhistory/memberNo/${restaurantNo}`)
+        Axios.get(`/api/order/orderList/${restaurantNo}`)
             .then(response => {
                 console.log(response.data)
                 setOrderList(response.data)
             })
     }, [])
 
+
     const renderCards = OrderList.map((orderlist, index) => {
         
         return <Col lg={6} md={8} xs={24} key={index}> 
-            <a>
+            <a href={`/orderDetail/${orderlist.orderNumber}`}>
                 <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
                     <div style={{display: 'inline-block'}}>
                         주문 번호 : {orderlist.orderNumber}

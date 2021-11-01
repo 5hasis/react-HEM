@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MemberRepository } from 'src/member/member.repository';
 import { MenuModule } from 'src/menu/menu.module';
 import { MenuRepository } from 'src/menu/menu.repository';
 import { OrderModule } from 'src/order/order.module';
@@ -14,7 +15,8 @@ import { OrderHistoryService } from './order-history.service';
         OrderModule,
         TypeOrmModule.forFeature([MenuRepository]),
         TypeOrmModule.forFeature([OrderRepository]),
-        TypeOrmModule.forFeature([OrderHistoryRepository])
+        TypeOrmModule.forFeature([OrderHistoryRepository]),
+        TypeOrmModule.forFeature([MemberRepository]),
     ],
     providers: [OrderHistoryService],
     controllers: [OrderHistoryController]

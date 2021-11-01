@@ -10,4 +10,6 @@ export class OrderHistoryCreateDto {
 
     orderAmount : number
 
+    memberMemberNo:number
+
 }

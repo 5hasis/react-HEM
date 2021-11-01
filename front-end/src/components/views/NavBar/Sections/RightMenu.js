@@ -4,17 +4,22 @@ import axios from 'axios';
 //import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import Cookies from 'universal-cookie';
 
 function RightMenu(props) {
   //const user = useSelector(state => state.user)
-  const user = localStorage.getItem('accessToken')
+
+  const cookies = new Cookies();
+
+  const user = cookies.get('accessToken')
 
   const logoutHandler = () => {
     axios.get('/api/member/logout').then(response => {
       // console.log(response.data)
       // console.log(response.data.accessToken)
       if (!response.data.accessToken) {
-        window.localStorage.removeItem('accessToken')
+        cookies.remove('accessToken');
+        //window.localStorage.removeItem('accessToken')
         //window.localStorage.setItem('accessToken', response.payload.accessToken);
         props.history.push("/login");
       } else {
