@@ -55,12 +55,12 @@ function RestaurantDetailPage(props) {
 
     let history = useHistory();
 
-    // const myRestaurantBtn = () => {
-    //     history.push({
-    //         pathname:`/myRestaurant/${restaurantNo}`,
-    //         state:RestaurantDetail
-    //     });
-    // }
+    const myRestaurantBtn = () => {
+        history.push({
+            pathname:`/myRestaurant/${restaurantNo}`,
+            state:RestaurantDetail
+        });
+    }
 
     
 
@@ -72,12 +72,12 @@ function RestaurantDetailPage(props) {
         })
     }
 
-    const myRestaurantBtn =(event)=>{
-        history.push({
-            pathname:`/checkPw/${restaurantNo}`,
-            state:RestaurantDetail
-        })
-    }
+    // const myRestaurantBtn =(event)=>{
+    //     history.push({
+    //         pathname:`/checkPw/${restaurantNo}`,
+    //         state:RestaurantDetail
+    //     })
+    // }
 
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
@@ -90,7 +90,7 @@ function RestaurantDetailPage(props) {
            <div>
                {
                    user !== null
-                   ?  <Button onClick={myRestaurantBtn}>내 가게 보기</Button>
+                   ? <Button onClick={myRestaurantBtn}>내 가게 보기</Button>
                    : <div> </div>
                }
            </div>
