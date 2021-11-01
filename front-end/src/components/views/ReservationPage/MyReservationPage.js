@@ -46,12 +46,14 @@ function MyReservationPage() {
         
         return <Col lg={6} md={8} xs={24} key={index}>
             <a href={`/myReservation/${reservation.reservationNo}/${reservation.member.memberNo}`}>
-                <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
-                {reservation.member.memberName}<br/>
-                {reservation.reservationName}<br/>
-                {change_date(reservation.reservationDate)}<br/> 
-                {reservation.reservationTime}<br/>
-                {reservation.reservationPeople}명
+            <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
+                    <div style={{display: 'inline-block'}}>
+                        식당 이름: {reservation.member.memberName}<hr/>
+                        예약 이름: {reservation.reservationName}<br/>
+                        예약 날짜: {change_date(reservation.reservationDate)}<br/> 
+                        예약 시간: {reservation.reservationTime}<br/>
+                        예약 인원: {reservation.reservationPeople}명
+                    </div>
                 
                 </div>
                 </a>
@@ -70,7 +72,7 @@ function MyReservationPage() {
                 <input type="text" onChange={phoneNumberHandler}></input>
                 <button onClick={searchByPhone}>Search</button>
             </div>
-            <Row gutter={[32,16]}>
+            <Row gutter={[32,16]} style={{width: '90%',padding:'3% 0 0 0'}}>
 
                 {renderCards}
                 

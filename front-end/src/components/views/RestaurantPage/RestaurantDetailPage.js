@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Typography, Button } from 'antd';
 import { useHistory } from "react-router-dom";
-
 import Axios from 'axios';
 import Menu from './Sections/Menu';
 
@@ -10,16 +9,27 @@ const {Title} = Typography
 function RestaurantDetailPage(props) {
     //console.log(props)
 
-    const restaurantNo = props.match.params.restaurantNo
+   
 
+    const restaurantNo = props.match.params.restaurantNo
+    const user = localStorage.getItem('accessToken')
+    console.log(user)
     const [RestaurantDetail, setRestaurantDetail] = useState([])
     const [Menus, setMenus] = useState([]);
+  
 
+
+    const showUpdateBtn=()=>{
+        Axios.get(`/api/member/detail/${restaurantNo}`,{userFrom:localStorage.getItem('accessToken')})
+       .then(response=>{
+           console.log(response.data)
+       })
+    }
     useEffect(() => {
         Axios.get(`/api/member/detail/${restaurantNo}`)
             .then(response => {
                 if(response.data){
-                    console.log(response.data)
+                    //console.log(response.data)
                     setRestaurantDetail(response.data)
                 }
                 else{
@@ -37,17 +47,20 @@ function RestaurantDetailPage(props) {
                 alert('메뉴 정보를 가져오는데 실패')
               }
             })
-    }, [])
 
+            showUpdateBtn()
+        
+    }, [])
+    
 
     let history = useHistory();
 
-    const myRestaurantBtn = () => {
-        history.push({
-            pathname:`/myRestaurant/${restaurantNo}`,
-            state:RestaurantDetail
-        });
-    }
+    // const myRestaurantBtn = () => {
+    //     history.push({
+    //         pathname:`/myRestaurant/${restaurantNo}`,
+    //         state:RestaurantDetail
+    //     });
+    // }
 
     
 
@@ -59,6 +72,13 @@ function RestaurantDetailPage(props) {
         })
     }
 
+    const myRestaurantBtn =(event)=>{
+        history.push({
+            pathname:`/checkPw/${restaurantNo}`,
+            state:RestaurantDetail
+        })
+    }
+
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>{RestaurantDetail.memberName}</Title>
@@ -67,7 +87,14 @@ function RestaurantDetailPage(props) {
             <Title level={4}>{RestaurantDetail.memberPhone}</Title>
 
             <Button onClick={makeReservation}>예약하기</Button>&nbsp;&nbsp;
-            <Button onClick={myRestaurantBtn}>내 가게 보기</Button>
+           <div>
+               {
+                   user !== null
+                   ?  <Button onClick={myRestaurantBtn}>내 가게 보기</Button>
+                   : <div> </div>
+               }
+           </div>
+            
            
             <br />
             
