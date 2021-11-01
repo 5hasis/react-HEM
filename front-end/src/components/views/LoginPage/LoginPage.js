@@ -21,6 +21,7 @@ function LoginPage(props){
     }
 
     const cookies = new Cookies();
+    const cookiesMember = new Cookies();
 
     const onSubmitHandler = (event) => {
         event.preventDefault();

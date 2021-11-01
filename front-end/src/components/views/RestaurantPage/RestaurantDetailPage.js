@@ -5,6 +5,7 @@ import Axios from 'axios';
 import Menu from './Sections/Menu';
 import Cookies from 'universal-cookie';
 
+
 const {Title} = Typography
 
 function RestaurantDetailPage(props) {
@@ -15,9 +16,10 @@ function RestaurantDetailPage(props) {
     const restaurantNo = props.match.params.restaurantNo
     const cookies = new Cookies();
     const user = cookies.get('accessToken')
-    console.log(user)
     const [RestaurantDetail, setRestaurantDetail] = useState([])
     const [Menus, setMenus] = useState([]);
+   
+
   
 
 
@@ -50,6 +52,10 @@ function RestaurantDetailPage(props) {
               }
             })
 
+            // Axios.get(`/api/member/myinfo`, member)
+            // .then(response => {
+            //     console.log(response.data)
+            // })
             showUpdateBtn()
         
     }, [])
