@@ -36,10 +36,12 @@ function LoginPage(props){
                     console.log(response.payload.accessToken)
                     cookies.set('accessToken', response.payload.accessToken, { 
                         path: '/',
-                        expires: Math.floor(new Date(Date.now() / 1000) + (60 * 60) ),
+                        //expires: Math.floor(new Date(Date.parse(new Date) +1000 *60 *60) ),
+                        maxAge:3600,
                         sameSite: 'strict',
                     });
                     //window.localStorage.setItem('accessToken', response.payload.accessToken);
+                    
                     props.history.push('/')
                 } else {
                     alert('fail to login!')
