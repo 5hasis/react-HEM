@@ -40,7 +40,7 @@ function MyReservationDetailPage(props) {
         Axios.get(`/api/reservation/detail/${reservationNo}`)
             .then(response => {
                 if(response.data){
-                    //console.log(response.data)
+                    console.log(response.data)
                     setReservationDetail(response.data)
                 }
                 else{

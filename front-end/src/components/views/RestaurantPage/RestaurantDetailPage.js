@@ -3,6 +3,7 @@ import { Typography, Button } from 'antd';
 import { useHistory } from "react-router-dom";
 import Axios from 'axios';
 import Menu from './Sections/Menu';
+import Cookies from 'universal-cookie';
 
 const {Title} = Typography
 
@@ -12,7 +13,8 @@ function RestaurantDetailPage(props) {
    
 
     const restaurantNo = props.match.params.restaurantNo
-    const user = localStorage.getItem('accessToken')
+    const cookies = new Cookies();
+    const user = cookies.get('accessToken')
     console.log(user)
     const [RestaurantDetail, setRestaurantDetail] = useState([])
     const [Menus, setMenus] = useState([]);
@@ -55,12 +57,12 @@ function RestaurantDetailPage(props) {
 
     let history = useHistory();
 
-    // const myRestaurantBtn = () => {
-    //     history.push({
-    //         pathname:`/myRestaurant/${restaurantNo}`,
-    //         state:RestaurantDetail
-    //     });
-    // }
+    const myRestaurantBtn = () => {
+        history.push({
+            pathname:`/myRestaurant/${restaurantNo}`,
+            state:RestaurantDetail
+        });
+    }
 
     
 
@@ -72,12 +74,12 @@ function RestaurantDetailPage(props) {
         })
     }
 
-    const myRestaurantBtn =(event)=>{
-        history.push({
-            pathname:`/checkPw/${restaurantNo}`,
-            state:RestaurantDetail
-        })
-    }
+    // const myRestaurantBtn =(event)=>{
+    //     history.push({
+    //         pathname:`/checkPw/${restaurantNo}`,
+    //         state:RestaurantDetail
+    //     })
+    // }
 
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
@@ -90,7 +92,7 @@ function RestaurantDetailPage(props) {
            <div>
                {
                    user !== null
-                   ?  <Button onClick={myRestaurantBtn}>내 가게 보기</Button>
+                   ? <Button onClick={myRestaurantBtn}>내 가게 보기</Button>
                    : <div> </div>
                }
            </div>
