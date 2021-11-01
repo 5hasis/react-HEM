@@ -61,7 +61,7 @@ export class MemberService {
     //식당 디테일
     getDetailByNo(memberNo:number):Promise<Member> {
         const member = this.memberRepository.findOne(memberNo, {
-            select: ["memberName", "memberAddress", "memberPhone"]
+            select: ["memberName", "memberAddress", "memberPhone", "memberId"]
         });
         return member
     }

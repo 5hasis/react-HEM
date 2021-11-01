@@ -58,6 +58,15 @@ export class ReservationService {
                         .getOne();
         return result;
     }
+
+    async getHistoryByNo(memberNo:number){
+        const result=await this.reservationRepository
+                        .createQueryBuilder('reservation')
+                        .leftJoinAndSelect('reservation.member','member')
+                        .where('member.memberNo=:memberNo',{memberNo})
+                        .getMany();
+        return result;
+    }
    
     async updateReservation(updateReservationDto:UpdateReservationDto,reservation:Reservation):Promise<Reservation>{
         const{
