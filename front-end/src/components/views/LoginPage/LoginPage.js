@@ -34,7 +34,7 @@ function LoginPage(props){
         dispatch(loginUser(body))
             .then(response => {
                 if (response.payload.accessToken) {
-                    console.log(response.payload.accessToken)
+                    console.log(response.payload)
                     cookies.set('accessToken', response.payload.accessToken, { 
                         path: '/',
                         //expires: Math.floor(new Date(Date.parse(new Date) +1000 *60 *60) ),
@@ -42,7 +42,11 @@ function LoginPage(props){
                         sameSite: 'strict',
                     });
                     //window.localStorage.setItem('accessToken', response.payload.accessToken);
-                    
+                    cookiesMember.set('memberNo',response.payload.memberNo,{
+                        path:'/',
+                        maxAge:3600,
+                        sameSite:'strict'
+                    })
                     props.history.push('/')
                 } else {
                     alert('fail to login!')

@@ -19,7 +19,7 @@ export class MemberController {
     }
 
     @Post('/signin')
-    signIn(@Body(ValidationPipe) memberSignInDto : MemberSignInDto): Promise<{accessToken: string}>  {
+    signIn(@Body(ValidationPipe) memberSignInDto : MemberSignInDto): Promise<{accessToken: string,memberNo:number}>  {
         return this.memberService.signIn(memberSignInDto);
     }
 

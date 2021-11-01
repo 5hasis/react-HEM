@@ -15,20 +15,12 @@ function RestaurantDetailPage(props) {
 
     const restaurantNo = props.match.params.restaurantNo
     const cookies = new Cookies();
-    const user = cookies.get('accessToken')
+    const memberNo = cookies.get('memberNo')
     const [RestaurantDetail, setRestaurantDetail] = useState([])
     const [Menus, setMenus] = useState([]);
    
 
-  
 
-
-    const showUpdateBtn=()=>{
-        Axios.get(`/api/member/detail/${restaurantNo}`,{userFrom:localStorage.getItem('accessToken')})
-       .then(response=>{
-           console.log(response.data)
-       })
-    }
     useEffect(() => {
         Axios.get(`/api/member/detail/${restaurantNo}`)
             .then(response => {
@@ -52,11 +44,8 @@ function RestaurantDetailPage(props) {
               }
             })
 
-            // Axios.get(`/api/member/myinfo`, member)
-            // .then(response => {
-            //     console.log(response.data)
-            // })
-            showUpdateBtn()
+            
+            
         
     }, [])
     
@@ -80,12 +69,8 @@ function RestaurantDetailPage(props) {
         })
     }
 
-    // const myRestaurantBtn =(event)=>{
-    //     history.push({
-    //         pathname:`/checkPw/${restaurantNo}`,
-    //         state:RestaurantDetail
-    //     })
-    // }
+console.log('memberNo'+memberNo)
+console.log('reNo'+restaurantNo)
 
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
@@ -97,7 +82,7 @@ function RestaurantDetailPage(props) {
             <Button onClick={makeReservation}>예약하기</Button>&nbsp;&nbsp;
            <div>
                {
-                   user !== null
+                   memberNo === restaurantNo
                    ? <Button onClick={myRestaurantBtn}>내 가게 보기</Button>
                    : <div> </div>
                }

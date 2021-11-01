@@ -10,6 +10,7 @@ function RightMenu(props) {
   //const user = useSelector(state => state.user)
 
   const cookies = new Cookies();
+  const cookiesMember = new Cookies();
 
   const user = cookies.get('accessToken')
 
@@ -19,6 +20,7 @@ function RightMenu(props) {
       // console.log(response.data.accessToken)
       if (!response.data.accessToken) {
         cookies.remove('accessToken');
+        cookies.remove('memberNo');
         //window.localStorage.removeItem('accessToken')
         //window.localStorage.setItem('accessToken', response.payload.accessToken);
         props.history.push("/login");
