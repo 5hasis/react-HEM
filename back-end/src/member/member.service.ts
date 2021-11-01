@@ -23,7 +23,7 @@ export class MemberService {
     }
 
     //로그인
-    async signIn(memberSignInDto : MemberSignInDto) : Promise<{accessToken:string}> {
+    async signIn(memberSignInDto : MemberSignInDto) : Promise<{accessToken:string,memberNo:number}> {
         const { memberId, memberPw } = memberSignInDto;
         const member = await this.memberRepository.findOne({memberId});
 
@@ -32,7 +32,7 @@ export class MemberService {
             const payload = { memberId }; //토큰에 중요한 정보 넣지 말기
             const accessToken = await this.jwtService.sign(payload);
 
-            return { accessToken:accessToken }; //객체로 리턴
+            return { accessToken:accessToken , memberNo:member.memberNo}; //객체로 리턴
         }  else {
             throw new UnauthorizedException('로그인 정보가 일치하지 않습니다.')
         }
