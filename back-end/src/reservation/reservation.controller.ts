@@ -28,6 +28,11 @@ export class ReservationController {
         return this.reservationService.getDetailByNo(reservationNo);
     }
 
+    @Get('/reservationhistory/:memberNo')
+    getHistoryByNo(@Param('memberNo') memberNo:number) {
+        return this.reservationService.getHistoryByNo(memberNo);
+    }
+
     @Get('/:reservationPhone')
     getReservationByPhone(@Param('reservationPhone') reservationPhone:string):Promise<Reservation[]>{
         return this.reservationService.getReservationByPhone(reservationPhone);
