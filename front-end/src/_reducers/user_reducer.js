@@ -8,26 +8,26 @@ export default function(state = {}, action) {
     switch (action.type) {
         case LOGIN_USER:
             return { ...state, accessToken: action.payload }
-            break;
+           // break;
         case REGISTER_USER:
             return {...state,register:action.payload}
-            break;
+           // break;
 
         case UPDATE_USER:
             return {...state,member:action.payload}
-            break;    
+          //  break;    
 
         case RESERVATION_USER:
             return {...state,reservation:action.payload}
-            break;
+           // break;
 
         case "create_menu":
             return {...state,menu:action.payload}
-            break;
+           // break;
 
         case "create_order_history":
             return {...state,orderhistory:action.payload}
-            break;
+           // break;
 
         default:
             return state;

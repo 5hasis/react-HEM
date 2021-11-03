@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button,Typography } from 'antd';
 import Axios from 'axios';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory } from 'react-router';
 
 
 const {Title} = Typography
@@ -40,7 +40,7 @@ function MyReservationDetailPage(props) {
         Axios.get(`/api/reservation/detail/${reservationNo}`)
             .then(response => {
                 if(response.data){
-                    console.log(response.data)
+                    //console.log(response.data)
                     setReservationDetail(response.data)
                 }
                 else{

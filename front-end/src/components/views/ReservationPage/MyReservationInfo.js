@@ -1,7 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import Axios from 'axios';
 import {useDispatch} from 'react-redux';
-import {reservationUser} from '../../../_actions/user_action';
 import {useHistory,useLocation} from 'react-router-dom'
 import {updateReservationUser} from '../../../_actions/user_action';
 
