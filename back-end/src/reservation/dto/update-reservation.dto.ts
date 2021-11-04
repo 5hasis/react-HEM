@@ -10,5 +10,7 @@ export class UpdateReservationDto{
     reservationTime : string;
     @IsNotEmpty()
     reservationPeople : number;
+    @IsNotEmpty()
+    reservationState : string;
 
 }

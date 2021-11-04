@@ -38,6 +38,7 @@ function MyReservationInfo() {
     const onRvNumberHandler=(event)=>{
         setRvNumber(event.currentTarget.value)
     }
+   
 
     useEffect(() => {
         setNo(reservation.reservationNo)
@@ -60,7 +61,6 @@ function MyReservationInfo() {
             reservationDate:RvDate,
             reservationTime:RvHour+':'+RvMinute,
             reservationPeople:RvNumber,
-            //memberMemberNo:memberNo
         }
 
         dispatch(updateReservationUser(body))

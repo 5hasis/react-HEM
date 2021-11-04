@@ -49,7 +49,8 @@ function MyReservationPage() {
                         예약 이름: {reservation.reservationName}<br/>
                         예약 날짜: {change_date(reservation.reservationDate)}<br/> 
                         예약 시간: {reservation.reservationTime}<br/>
-                        예약 인원: {reservation.reservationPeople}명
+                        예약 인원: {reservation.reservationPeople}명<br/>
+                        예약 상태: {reservation.reservationState}
                     </div>
                 
                 </div>

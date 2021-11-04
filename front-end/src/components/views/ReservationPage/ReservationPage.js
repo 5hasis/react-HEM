@@ -17,6 +17,7 @@ function ReservationPage(props) {
     const [RvHour, setRvHour] = useState(10)
     const [RvMinute, setRvMinute] = useState("00")
     const [RvNumber, setRvNumber] = useState(1)
+    const [RvState, setRvState] = useState("승인 준비")
 
 
     const onNameHandler=(event)=>{
@@ -37,6 +38,9 @@ function ReservationPage(props) {
     const onRvNumberHandler=(event)=>{
         setRvNumber(event.currentTarget.value)
     }
+    const onRvStateHandler=(event)=>{
+        setRvState(event.currentTarget.value)
+    }
 
 
    
@@ -51,6 +55,7 @@ function ReservationPage(props) {
             reservationDate:RvDate,
             reservationTime:RvHour+':'+RvMinute,
             reservationPeople:RvNumber,
+            reservationState:RvState,
             memberMemberNo:memberNo
         }
 
@@ -58,7 +63,7 @@ function ReservationPage(props) {
         .then(response=>{
             
             if(response.payload.reservationSuccess){
-                console.log(memberNo)
+                //console.log(memberNo)
                 props.history.push("/reservationSuccess")
             }else{
                 alert("예약을 실패하였습니다.")
@@ -88,6 +93,7 @@ function ReservationPage(props) {
             </div>
             <label>인원 수</label>
             <input type="number" value={RvNumber} min={1} onChange={onRvNumberHandler}/>
+            <input type="text" value={RvState} onChange={onRvStateHandler} style={{display:'none'}}/>
             
             <br/>
             <button type="submit">예약하기</button>
