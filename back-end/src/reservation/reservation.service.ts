@@ -74,7 +74,8 @@ export class ReservationService {
             reservationName,
             reservationDate,
             reservationTime,
-            reservationPeople
+            reservationPeople,
+            reservationState
         }=updateReservationDto;
         
         const myReservation=await this.getReservationByNo(reservationNo);
@@ -83,9 +84,11 @@ export class ReservationService {
         myReservation.reservationDate=reservationDate;
         myReservation.reservationTime=reservationTime;
         myReservation.reservationPeople=reservationPeople;
+        myReservation.reservationState=reservationState;
         await this.reservationRepository.save(myReservation);
         return myReservation;
     }
+
 
 
 }

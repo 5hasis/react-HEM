@@ -70,6 +70,7 @@ function MyReservationDetailPage(props) {
             <Title level={4}>{change_date(ReservationDetail.reservationDate)}</Title>
             <Title level={4}>{ReservationDetail.reservationTime}</Title>
             <Title level={4}>{ReservationDetail.reservationPeople}명</Title>
+            <Title level={4}>{ReservationDetail.reservationState}</Title>
 
             <Button onClick={updateBtn}>수정하기</Button>&nbsp;&nbsp;
             <Button onClick={deleteBtn}>삭제하기</Button>

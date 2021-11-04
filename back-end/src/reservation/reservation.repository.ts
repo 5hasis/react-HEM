@@ -14,6 +14,7 @@ export class ReservationRepository extends Repository<Reservation>{
             reservationDate,
             reservationPeople,
             reservationTime,
+            reservationState,
             } = createReservationDto;
 
         const reservation =new Reservation();
@@ -22,6 +23,7 @@ export class ReservationRepository extends Repository<Reservation>{
         reservation.reservationDate=reservationDate;
         reservation.reservationTime=reservationTime;
         reservation.reservationPeople=reservationPeople;
+        reservation.reservationState=reservationState;
         reservation.member=member;
         
         await this.save(reservation);

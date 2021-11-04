@@ -13,6 +13,8 @@ export class CreateReservationDto {
     @IsNotEmpty()
     reservationPeople : number;
     @IsNotEmpty()
+    reservationState : string;
+    @IsNotEmpty()
     memberMemberNo : number;
 
     
