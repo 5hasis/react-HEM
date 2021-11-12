@@ -10,7 +10,6 @@ function RightMenu(props) {
   //const user = useSelector(state => state.user)
 
   const cookies = new Cookies();
-  const cookiesMember = new Cookies();
 
   const user = cookies.get('accessToken')
 
