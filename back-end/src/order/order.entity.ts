@@ -13,6 +13,9 @@ export class Order extends BaseEntity{
     @Column()
     orderPrice:number;
 
+    @Column()
+    orderStatus:string;
+
     @ManyToOne(type => Member, member => member.orders)
     member: Member;
 

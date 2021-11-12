@@ -30,7 +30,7 @@ function MyRestaurantOrderList(props) {
                         <hr />
                         테이블 번호 : {orderlist.orderTableNumber}<br/>
                         총 주문 금액 : {orderlist.orderPrice}원<br/>
-                            
+                        {orderlist.orderStatus}
                     </div>
                 </div>
             </a>

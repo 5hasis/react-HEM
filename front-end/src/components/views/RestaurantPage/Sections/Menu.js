@@ -86,6 +86,7 @@ function Menu(props) {
             orderPrice:totalPrice,
             memberMemberNo:restaurantNo,
             orderTableNumber:TableNo, 
+            orderStatus:'주문 대기',
         }
        
         Axios.post('/api/order', order)
