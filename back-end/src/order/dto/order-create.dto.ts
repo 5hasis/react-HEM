@@ -8,4 +8,6 @@ export class OrderCreateDto {
 
     memberMemberNo : number
 
+    orderStatus : string
+
 }
