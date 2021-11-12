@@ -22,6 +22,9 @@ export class Reservation extends BaseEntity {
     @Column()
     reservationPeople : number;
 
+    @Column()
+    reservationState : string;
+
     @ManyToOne(type => Member, member => member.reservations,{eager:false})
     member:Member;
 

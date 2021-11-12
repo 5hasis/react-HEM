@@ -1,8 +1,6 @@
-import React,{useEffect,useState} from 'react';
-import { Row, Col, Typography, Button } from 'antd';
+import React,{useState} from 'react';
+import { Row, Col} from 'antd';
 import Axios from 'axios';
-import { Link } from 'react-router-dom'
-import { render } from 'react-dom';
 
 
 
@@ -12,7 +10,6 @@ function MyReservationPage() {
 
     const [PhoneNumber, setPhoneNumber]=useState('1')
     const [Reservations, setReservations] = useState([])
-    const [Member, setMember] = useState([])
     
     
     const phoneNumberHandler=(e)=>{
@@ -52,7 +49,8 @@ function MyReservationPage() {
                         예약 이름: {reservation.reservationName}<br/>
                         예약 날짜: {change_date(reservation.reservationDate)}<br/> 
                         예약 시간: {reservation.reservationTime}<br/>
-                        예약 인원: {reservation.reservationPeople}명
+                        예약 인원: {reservation.reservationPeople}명<br/>
+                        예약 상태: {reservation.reservationState}
                     </div>
                 
                 </div>

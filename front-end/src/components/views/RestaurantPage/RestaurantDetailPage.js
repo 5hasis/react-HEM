@@ -69,8 +69,6 @@ function RestaurantDetailPage(props) {
         })
     }
 
-console.log('memberNo'+memberNo)
-console.log('reNo'+restaurantNo)
 
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>

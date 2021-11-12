@@ -1,7 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import Axios from 'axios';
 import {useDispatch} from 'react-redux';
-import {reservationUser} from '../../../_actions/user_action';
 import {useHistory,useLocation} from 'react-router-dom'
 import {updateReservationUser} from '../../../_actions/user_action';
 
@@ -40,6 +38,7 @@ function MyReservationInfo() {
     const onRvNumberHandler=(event)=>{
         setRvNumber(event.currentTarget.value)
     }
+   
 
     useEffect(() => {
         setNo(reservation.reservationNo)
@@ -62,7 +61,6 @@ function MyReservationInfo() {
             reservationDate:RvDate,
             reservationTime:RvHour+':'+RvMinute,
             reservationPeople:RvNumber,
-            //memberMemberNo:memberNo
         }
 
         dispatch(updateReservationUser(body))

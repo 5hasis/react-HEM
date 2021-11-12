@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
-import { Row, Col, Typography } from 'antd';
+import { Col, Typography } from 'antd';
 
 const {Title} = Typography
 
@@ -15,9 +15,9 @@ function OrderDetailPage(props) {
     useEffect(() => {
         Axios.get(`/api/orderhistory/orderList/${orderNo}`)
             .then(response => {
-                console.log(response.data)
+                //console.log(response.data)
                 setOrderDetail(response.data)
-                console.log(response.data[0])
+                //console.log(response.data[0])
                 setOrderTableNumber(response.data[0].order.orderTableNumber)
                 setOrderPrice(response.data[0].order.orderPrice)
             })
