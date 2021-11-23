@@ -83,6 +83,26 @@ export class MemberService {
         
     }
 
+    async getMemberByName(memberName:string) : Promise<Member[]>{
+        const result = this.memberRepository
+                            .createQueryBuilder('member')
+                            .where('member.memberName LIKE :memberName', {memberName:`%${memberName}%`})
+                            .getMany();
+
+        return result;
+        
+    }
+
+    async getMemberByAddress(memberAddress:string) : Promise<Member[]>{
+        const result = this.memberRepository
+                            .createQueryBuilder('member')
+                            .where('member.memberAddress LIKE :memberAddress', {memberAddress:`%${memberAddress}%`})
+                            .getMany();
+
+        return result;
+        
+    }
+
     //회원정보수정
     //자신의 정보만 수정하도록
     async updateMember(memberUpdateDto : MemberUpdateDto, member:Member):Promise<Member> {
