@@ -16,7 +16,7 @@ export class OrderService {
     ){}
 
 
-    async createOrder({orderPrice, orderTableNumber,memberMemberNo} : OrderCreateDto):Promise<Order>{
+    async createOrder({orderPrice, orderTableNumber,orderStatus,memberMemberNo} : OrderCreateDto):Promise<Order>{
         const member = await this.memberRepository.findOne(memberMemberNo);
       
         const order = this.orderRepository.create(
@@ -24,6 +24,7 @@ export class OrderService {
                 orderPrice,
                 orderTableNumber,
                 member,
+                orderStatus,
             })
         await this.orderRepository.save(order)
         return order;
@@ -53,6 +54,21 @@ export class OrderService {
         if(result.affected === 0){
             throw new NotFoundException(`Can't find Order`)
         }
+    }
+
+    async approveOrder(orderCreateDto : OrderCreateDto, orderNumber:number):Promise<void>{
+        
+        const {
+            orderStatus,
+
+        } = orderCreateDto
+        //console.log(orderStatus);
+        const result = await this.orderRepository 
+                                .createQueryBuilder()
+                                .update('order')
+                                .set({ orderStatus: orderStatus})
+                                .where("orderNumber = :orderNumber", { orderNumber })
+                                .execute();
     }
 
     async deleteOrder(orderNumber:number){

@@ -68,21 +68,25 @@ function Menu(props) {
         
         event.preventDefault();
 
-        if(TableNo === 0) {
+        if(TableNo === 0 || TableNo === '0') {
             
             alert('테이블 번호를 입력하세요')
             tableNoInput.current.focus();
             return
         }
 
-        
         const totalPrice = totalOrderPrice();
+        if(totalPrice==0){
+            alert('아무것도 주문하지 않았습니다')
+            return
+        }
         console.log('totalPrice',totalPrice)
 
         const order = {
             orderPrice:totalPrice,
             memberMemberNo:restaurantNo,
             orderTableNumber:TableNo, 
+            orderStatus:'주문 대기',
         }
        
         Axios.post('/api/order', order)

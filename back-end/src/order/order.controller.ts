@@ -1,4 +1,4 @@
-import { Body, Controller, Post,Get,Param,UseGuards,Delete,Request } from '@nestjs/common';
+import { Body, Controller, Post,Get,Param,UseGuards,Delete,Request, Patch } from '@nestjs/common';
 import { OrderService } from './order.service';
 import {OrderCreateDto} from './dto/order-create.dto'
 import { AuthGuard } from '@nestjs/passport';
@@ -34,6 +34,11 @@ export class OrderController {
     ):Promise<Order>{
         return this.orderService.getOrder(orderNo)
     }
+
+    @Patch('/:orderNo/approve')
+    approveOrder(@Body() orderCreateDto : OrderCreateDto, @Param("orderNo") orderNo:number):Promise<void>{
+        return this.orderService.approveOrder(orderCreateDto, orderNo)
+}
 
     @Delete('/:orderNo')
     deleteMenu(

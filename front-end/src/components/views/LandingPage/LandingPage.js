@@ -141,11 +141,13 @@ console.log(MemberList)
             <Title level={2}>맛집 둘러보기</Title>
             <div>
             <SelectBox options={OPTIONS} defaultValue="name"></SelectBox>&ensp;&ensp;
-                <input type="text" onChange={NameHandler}></input>
+                <input type="text" onChange={NameHandler}></input>&nbsp;&nbsp;
                 
+
                 <button onClick={searchBy}>Search</button>
 
                 
+
 
             </div>
             <hr />
