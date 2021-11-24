@@ -51,13 +51,13 @@ export class MemberController {
         return this.memberService.getMemberByNo(member);
     }
 
-    @Get('/searchbyName/:memberName')
+    @Get('/Name/:memberName')
     getMemberByName(@Param('memberName') memberName:string):Promise<Member[]> {
         //console.log(member);
         return this.memberService.getMemberByName(memberName);
     }
 
-    @Get('/searchbyAddress/:memberAddress')
+    @Get('/Address/:memberAddress')
     getMemberByPlace(@Param('memberAddress') memberAddress:string):Promise<Member[]> {
         //console.log(member);
         return this.memberService.getMemberByAddress(memberAddress);
