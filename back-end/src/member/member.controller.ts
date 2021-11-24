@@ -6,6 +6,7 @@ import { MemberService } from './member.service';
 import { Member } from './member.entity';
 import { GetMember } from './get-member.decorator';
 import { AuthGuard } from '@nestjs/passport';
+import { MemberFindDto } from './dto/member-find.dto';
 
 @Controller('/api/member')
 export class MemberController {
@@ -26,6 +27,11 @@ export class MemberController {
     @Get('/logout')//@UseGuards(AuthGuard())
     logout():Promise<{accessToken:string}> {
         return this.memberService.logout();
+    }
+
+    @Post('/findId')
+    findId(@Body(ValidationPipe) memberFindDto : MemberFindDto): Promise<Member>  {
+        return this.memberService.findId(memberFindDto);
     }
 
     @Get('/list')

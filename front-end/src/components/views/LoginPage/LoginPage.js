@@ -48,8 +48,10 @@ function LoginPage(props){
                         sameSite:'strict'
                     })
                     props.history.push('/')
-                } else {
-                    alert('fail to login!')
+                }
+            }, error => {
+                if(error.response.status === 401){
+                    alert('일치하는 로그인 정보가 없습니다')
                 }
             })
     }
@@ -68,7 +70,16 @@ function LoginPage(props){
                 <button type="submit">
                     Login
                 </button>
+                <div style={{ display: 'flex', flexDirection: 'row',justifyContent: 'center', marginTop:'1rem' }}>
+                <a href={'/login/findid'} style={{color:'black'}}>아이디 찾기</a>
+                &nbsp;|&nbsp;
+                <a style={{color:'black'}}>비밀번호 찾기</a>
+                </div>
             </form>
+            
+            
+            
+            
         </div>
     )
 }
