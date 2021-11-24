@@ -7,6 +7,7 @@ import { MemberRepository } from './member.repository';
 import * as bcrypt from 'bcryptjs';
 import { Member } from './member.entity';
 import { MemberUpdateDto } from './dto/member-update.dto';
+import { MemberFindDto } from './dto/member-find.dto';
 
 @Injectable()
 export class MemberService {
@@ -42,6 +43,28 @@ export class MemberService {
     async logout():Promise<{accessToken:string}> {
         const accessToken = '';
         return {accessToken : accessToken}
+    }
+
+    //회원 아이디 찾기
+    async findId(memberFindDto : MemberFindDto): Promise<Member> {
+        const {memberName, memberPhone} = memberFindDto;
+        //console.log(memberName, memberPhone);
+        const member = await this.memberRepository
+                            .createQueryBuilder('member')
+                            .select('member.memberId')
+                            .where('member.memberName = :memberName', {memberName})
+                            .andWhere('member.memberPhone = :memberPhone', {memberPhone})
+                            .getOne();
+        //console.log(member)
+
+        if(member){
+            return member
+        } else {
+            throw new UnauthorizedException('일치하는 정보가 없습니다')
+        }
+        
+        
+
     }
 
     //회원 리스트

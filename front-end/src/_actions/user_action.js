@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
     REGISTER_USER,
     LOGIN_USER,
-    RESERVATION_USER
+    RESERVATION_USER,
+    FIND_ID
 } from './types';
 import Cookies from 'universal-cookie';
 //import { config } from "../config";
@@ -14,6 +15,17 @@ export function loginUser(dataToSubmit) {
 
     return {
         type: LOGIN_USER,
+        payload: request
+    }
+}
+
+export function findID(dataToSubmit) {
+
+    const request = axios.post('/api/member/findId', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: FIND_ID,
         payload: request
     }
 }

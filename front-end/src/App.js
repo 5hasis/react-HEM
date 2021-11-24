@@ -23,6 +23,7 @@ import MyRestaurantOrderList from "./components/views/RestaurantPage/MyRestauran
 import MyRestaurantReservationList from "./components/views/RestaurantPage/MyRestaurantReservationList";
 import OrderDetailPage from "./components/views/RestaurantPage/OrderDetailPage";
 import MyRestaurantReservationDetail from "./components/views/RestaurantPage/MyRestaurantReservationDetail";
+import FindIdPage from "./components/views/LoginPage/FindIdPage";
 
 
 
@@ -48,6 +49,7 @@ function App() {
 
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/login/findid" component={FindIdPage} />
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/registerSuccess" component={RegisterSuccessPage} />
           <Route exact path="/reservation/:restaurantNo" component={ReservationPage} />
