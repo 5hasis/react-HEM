@@ -70,7 +70,7 @@ export class MemberService {
     //회원 리스트
     async getAllMember():Promise <Member[]> {
         const restaurants =  this.memberRepository.find({
-            select: ["memberNo", "memberName", "memberAddress", "memberPhone"],
+            select: ["memberNo", "memberName", "memberAddress", "memberPhone", "memberEmail", "memberBoss"],
             // where:{
             // },
             order:{
@@ -84,7 +84,7 @@ export class MemberService {
     //식당 디테일
     getDetailByNo(memberNo:number):Promise<Member> {
         const member = this.memberRepository.findOne(memberNo, {
-            select: ["memberName", "memberAddress", "memberPhone", "memberId"]
+            select: ["memberName", "memberAddress", "memberPhone", "memberId", "memberEmail", "memberBoss"]
         });
         return member
     }
@@ -136,7 +136,10 @@ export class MemberService {
             memberPw, 
             memberName,
             memberAddress, 
-            memberPhone } = memberUpdateDto;
+            memberPhone,
+            memberEmail,
+            memberBoss
+             } = memberUpdateDto;
 
         const salt = await bcrypt.genSalt();
         const hashedPw = await bcrypt.hash(memberPw, salt);
@@ -146,6 +149,8 @@ export class MemberService {
         myInfo.memberName = memberName;
         myInfo.memberAddress = memberAddress;
         myInfo.memberPhone = memberPhone;
+        myInfo.memberEmail=memberEmail;
+        myInfo.memberBoss=memberBoss;
 
         await this.memberRepository.save(myInfo);
 

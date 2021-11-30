@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PopupDom from './PopupDom';
 import PopupPostCode from './PopupPostCode';
 import {useDispatch} from 'react-redux';
@@ -28,6 +28,8 @@ function RegisterPage(props){
             setText('');
         }
 
+        const emailReinput=useRef();
+
         //만들어둔 action을 useDispath를 통해 발생시킴
         const dispatch=useDispatch();
 
@@ -38,9 +40,42 @@ function RegisterPage(props){
         const [Id, setId] = useState("")
         const [Password, setPassword] = useState("")
         const [ConfirmPassword, setConfirmPassword] = useState("")
+        const [Email, setEmail] = useState("")
+        const [Boss, setBoss] = useState("")
+
+        useEffect(() => {
+            if (Phone.length === 10) {
+              setPhone(Phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+            }
+            if (Phone.length === 13) {
+              setPhone(Phone.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+            }
+          }, [Phone]);
+          
+          const isEmail = (e) => {
+            e.preventDefault();
+            const emailRegex =
+            /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+            console.log(emailRegex.test(e.target.value))
+            
+            if(!emailRegex.test(e.target.value) && (e.target.value).length!==0){
+                alert('이메일을 잘못 입력하였습니다')
+                setEmail('');
+                
+            }
+          };
 
         const onNameHandler=(event)=>{
             setName(event.currentTarget.value)
+        }
+        const onBossHandler=(event)=>{
+            setBoss(event.currentTarget.value)
+        }
+        const onEmailHandler=(event)=>{
+            //setEmail(finalEmail)
+            setEmail(event.currentTarget.value)
+
+          
         }
         const onPhoneHandler=(event)=>{
             setPhone(event.currentTarget.value)
@@ -75,7 +110,9 @@ function RegisterPage(props){
                 memberPhone:Phone,
                 memberAddress:FirstAddress+' '+Address,
                 memberId:Id,
-                memberPw:Password
+                memberPw:Password,
+                memberEmail:Email,
+                memberBoss:Boss
             }
     
             dispatch(registerUser(body))
@@ -95,8 +132,12 @@ function RegisterPage(props){
     return (
         <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',height:'100vh'}}>
         <form style={{display:'flex',flexDirection:'column',width:'20%'}} onSubmit={onSubmitHandler}>
-            <label>Name (Trade name)</label>
+            <label>Trade name</label>
             <input type="text" value={Name} onChange={onNameHandler}/>
+            <label>Name</label>
+            <input type="text" value={Boss} onChange={onBossHandler}/>
+            <label>Email</label>
+            <input type="text" value={Email} onBlur={isEmail} onChange={onEmailHandler} ref={emailReinput}/>
             <label>Phone</label>
             <input type="text" value={Phone} onChange={onPhoneHandler}/>
             <label>Address</label>
