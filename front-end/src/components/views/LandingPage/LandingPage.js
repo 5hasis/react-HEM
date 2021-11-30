@@ -21,7 +21,7 @@ function LandingPage(){
     const SelectBox = (props) => {
         const handleChange = (e) => {
             // event handler
-           //console.log(e.target.value);
+           console.log(e.target.value);
            if(e.target.value === 'name'){
                //console.log("이름으로 검색")
                setbtnState('Name')
@@ -39,7 +39,7 @@ function LandingPage(){
                     <option
                     key={option.value}
                     value={option.value}
-					defaultValue={props.defaultValue === option.value}
+					// defaultValue={props.defaultValue === option.value}
                     >
                         {option.name}
                     </option>
@@ -60,7 +60,7 @@ function LandingPage(){
         Axios.get(`/api/member/${btnState}/${Name}`)
             .then(response => {
                 if(response.data){
-                    console.log(response.data)
+                    //console.log(response.data)
                     setMemberList(response.data)
 
                 }
@@ -140,7 +140,7 @@ function LandingPage(){
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>맛집 둘러보기</Title>
             <div>
-            <SelectBox options={OPTIONS} defaultValue="name"></SelectBox>&ensp;&ensp;
+            <SelectBox options={OPTIONS} ></SelectBox>&ensp;&ensp;
                 <input type="text" onChange={NameHandler}></input>&nbsp;&nbsp;
                 
 

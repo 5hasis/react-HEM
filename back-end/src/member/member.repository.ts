@@ -12,7 +12,10 @@ export class MemberRepository extends Repository<Member> {
             memberPw, 
             memberName,
             memberAddress, 
-            memberPhone } = memberCredentialsDto;
+            memberPhone,
+            memberEmail,
+            memberBoss
+            } = memberCredentialsDto;
 
         const salt = await bcrypt.genSalt();
         const hashedPw = await bcrypt.hash(memberPw, salt);
@@ -23,7 +26,9 @@ export class MemberRepository extends Repository<Member> {
             memberPw:hashedPw, 
             memberName,
             memberAddress, 
-            memberPhone
+            memberPhone,
+            memberEmail,
+            memberBoss
         });
 
         try{

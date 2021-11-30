@@ -26,6 +26,12 @@ export class Member extends BaseEntity {
     @Column()
     memberPw: string;
 
+    @Column()
+    memberEmail: string;
+
+    @Column()
+    memberBoss: string;
+
     @OneToMany(type => Menu, menu => menu.member)
     menus: Menu[];
 
