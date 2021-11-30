@@ -41,9 +41,16 @@ function MyRestaurantOrderList(props) {
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>우리 가게 주문 내역</Title><hr/>
-            <Row gutter={[32,16]}>
+
+            {
+                OrderList.length == 0?
+                
+                <Title level={4} style={{margin:'3rem 0 0 2rem'}}>주문 내역이 없습니다.</Title>
+                :
+                <Row gutter={[32,16]}>
                     {renderCards} 
-            </Row>
+                </Row>
+            }
         </div>
     )
 }
