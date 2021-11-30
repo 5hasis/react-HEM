@@ -135,7 +135,7 @@ function LandingPage(){
         
     })
 
-console.log(MemberList)
+//console.log(MemberList)
     return (
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>맛집 둘러보기</Title>
@@ -151,24 +151,31 @@ console.log(MemberList)
 
             </div>
             <hr />
-            
-            <Row gutter={[32,16]}>
+            {
+                MemberList[0] !== 1 
+                ?(
+                    <Row gutter={[32,16]}>
 
-                {renderCards2}
-                
-            </Row>
+                    {renderCards2}
+
+                    </Row>
+                ):
+                null
+            }
+            
         
             {
-                MemberList[0] === 1
+                MemberList[0] === 1 
                 ?(
                 <Row gutter={[32,16]}>
+              
                 {renderCards}
                 
             </Row>)
             : MemberList.length === 0
                 ?(
                     <Row gutter={[32,16]}>
-                     <div style={{width:'100%', textAlign:'center'}}><h1>검색 결과가 없습니다.</h1></div>
+                     <div style={{width:'100%', textAlign:'center',}}><h1>검색 결과가 없습니다.</h1></div>
 
                 
                 {renderCards}
