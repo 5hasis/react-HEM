@@ -13,8 +13,8 @@ function LandingPage(){
     const [btnState, setbtnState] = useState('Name')
     
     const OPTIONS = [
-        { value: "name", name: "이름으로 찾기" },
-        { value: "place", name: "위치로 찾기" },
+        { value: "Name", name: "이름으로 찾기" },
+        { value: "Address", name: "위치로 찾기" },
 
     ];
  
@@ -22,7 +22,7 @@ function LandingPage(){
         const handleChange = (e) => {
             // event handler
            //console.log(e.target.value);
-           if(e.target.value === 'name'){
+           if(e.target.value === 'Name'){
                //console.log("이름으로 검색")
                setbtnState('Name')
               
@@ -34,7 +34,7 @@ function LandingPage(){
         };
     
         return (
-            <select onChange={handleChange}>
+            <select onChange={handleChange} value={btnState}>
                 {props.options.map((option) => (
                     <option
                     key={option.value}
@@ -56,16 +56,16 @@ function LandingPage(){
     }
 
     function searchBy() {
-        console.log(btnState)
+        //console.log(btnState)
         Axios.get(`/api/member/${btnState}/${Name}`)
             .then(response => {
                 if(response.data){
-                    console.log(response.data)
+                    //console.log(response.data)
                     setMemberList(response.data)
-
+                    
                 }
                 else{
-                    alert('예약 정보를 가져오는데 실패')
+                    alert('검색 실패')
                 }
             })
         
@@ -120,15 +120,6 @@ function LandingPage(){
                 </div>
             </a>
             <br />
-            {/* <Meta 
-                avatar={ //동그라미 user이미지
-                    <Avatar src={video.writer.image} />
-                }
-                title={video.title}
-                description="" />
-            <span>{video.writer.name} </span><br />
-            <span style={{ marginLeft: '3rem' }}> {video.views}</span> - 
-            <span> {moment(video.createdAt).format("MMM Do YY")} </span> */}
         </Col>
      
         )
@@ -140,14 +131,10 @@ function LandingPage(){
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>맛집 둘러보기</Title>
             <div>
-            <SelectBox options={OPTIONS} defaultValue="name"></SelectBox>&ensp;&ensp;
+            <SelectBox options={OPTIONS} defaultValue="Name"></SelectBox>&ensp;&ensp;
                 <input type="text" onChange={NameHandler}></input>&nbsp;&nbsp;
-                
 
                 <button onClick={searchBy}>Search</button>
-
-                
-
 
             </div>
             <hr />

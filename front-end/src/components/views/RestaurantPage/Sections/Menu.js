@@ -127,7 +127,7 @@ function Menu(props) {
         <form onSubmit={onSubmitHandler}>
             <div>
                 <label>테이블 번호 : </label>
-                <input type="number" name="tableNo" value={TableNo} min={0} onChange={onTableNoHandler} 
+                <input type="number" name="tableNo" onBl value={TableNo} min={0} onChange={onTableNoHandler} 
                 ref={tableNoInput}
                 style={{width:'3rem'}}/>
             </div>
