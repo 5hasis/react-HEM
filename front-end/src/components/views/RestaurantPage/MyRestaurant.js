@@ -1,6 +1,8 @@
 import { Button, Typography } from 'antd';
 import React from 'react'
+import axios from 'axios';
 import { useHistory, useLocation } from 'react-router';
+import Cookies from 'universal-cookie';
 
 const {Title} = Typography
 
@@ -19,6 +21,31 @@ function MyRestaurant(props) {
             pathname:'/myRestaurantInfo',
             state:member,
         });
+    }
+
+
+    const deleteBtn = () => {
+        const cookies = new Cookies();
+        if (window.confirm("정말 회원 탈퇴하시겠습니까?")) {
+            
+            axios.defaults.headers.common['Authorization'] = `Bearer ${cookies.get('accessToken')}`
+            axios.delete(`/api/member/delete`).then(res => res)
+
+            axios.get('/api/member/logout').then(response => {
+                
+                if (!response.data.accessToken) {
+                    console.log(response)
+                    cookies.remove('accessToken',{ path: '/' });
+                    cookies.remove('memberNo',{ path: '/' });
+                    
+                    props.history.push("/deleteRestaurant");
+                } else {
+                    alert('Log Out Failed')
+                }
+            });
+          } else {
+            console.log("회원 탈퇴 취소.");
+          }
     }
 
     const createMenu = (event) => {
@@ -60,7 +87,7 @@ function MyRestaurant(props) {
             <br />
             <div>
             <Button onClick={updateBtn}>수정</Button>&nbsp;&nbsp;
-            <Button >회원 탈퇴</Button>
+            <Button onClick={deleteBtn}>회원 탈퇴</Button>
             </div>
         </div>
     )

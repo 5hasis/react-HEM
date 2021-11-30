@@ -23,12 +23,6 @@ function NavBar() {
         <a href="/" >HEM</a>
       </div>
       <div className="menu_list">
-        <a href="/"className="menu_list_letter">Order</a>
-      </div>
-      <div className="menu_list">
-        <a href="/"className="menu_list_letter">Reservation</a>
-      </div>
-      <div className="menu_list">
         <a href="/"className="menu_list_letter">Visited</a>
       </div>
       <div className="menu_list">

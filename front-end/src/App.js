@@ -24,6 +24,7 @@ import MyRestaurantReservationList from "./components/views/RestaurantPage/MyRes
 import OrderDetailPage from "./components/views/RestaurantPage/OrderDetailPage";
 import MyRestaurantReservationDetail from "./components/views/RestaurantPage/MyRestaurantReservationDetail";
 import FindIdPage from "./components/views/LoginPage/FindIdPage";
+import DeleteRestaurantSuccess from "./components/views/RestaurantPage/DeleteRestaurantSuccess";
 
 
 
@@ -69,6 +70,10 @@ function App() {
 
           <Route exact path="/orderDetail/:orderNumber" component={OrderDetailPage} />
           <Route exact path="/menu/:restaurantNo" component={CreateMenuPage} />
+
+          
+          <Route exact path="/deleteRestaurant" component={DeleteRestaurantSuccess} />
+
 
         </Switch>
       </div>
