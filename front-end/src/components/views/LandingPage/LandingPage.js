@@ -21,6 +21,7 @@ function LandingPage(){
     const SelectBox = (props) => {
         const handleChange = (e) => {
             // event handler
+
            //console.log(e.target.value);
            if(e.target.value === 'Name'){
                //console.log("이름으로 검색")
@@ -39,7 +40,7 @@ function LandingPage(){
                     <option
                     key={option.value}
                     value={option.value}
-					defaultValue={props.defaultValue === option.value}
+					// defaultValue={props.defaultValue === option.value}
                     >
                         {option.name}
                     </option>
@@ -131,7 +132,9 @@ function LandingPage(){
         <div style={{width:'85%', margin:'3rem auto'}}>
             <Title level={2}>맛집 둘러보기</Title>
             <div>
+
             <SelectBox options={OPTIONS} defaultValue="Name"></SelectBox>&ensp;&ensp;
+
                 <input type="text" onChange={NameHandler}></input>&nbsp;&nbsp;
 
                 <button onClick={searchBy}>Search</button>

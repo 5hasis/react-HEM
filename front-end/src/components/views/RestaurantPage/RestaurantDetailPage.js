@@ -77,7 +77,7 @@ function RestaurantDetailPage(props) {
             <Title level={4}>{RestaurantDetail.memberAddress}</Title>
             <Title level={4}>{RestaurantDetail.memberPhone}</Title>
 
-            <Button onClick={makeReservation}>예약하기</Button>&nbsp;&nbsp;
+            <Button onClick={makeReservation} style={{margin:'0 0 10px 0'}}>예약하기</Button>&nbsp;&nbsp;
            <div>
                {
                    memberNo === restaurantNo

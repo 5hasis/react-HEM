@@ -14,4 +14,10 @@ export class MemberUpdateDto {
     @IsNotEmpty()
     memberPw: string;
 
+    @IsNotEmpty()
+    memberEmail: string;
+
+    @IsNotEmpty()
+    memberBoss: string;
+
 }

@@ -17,4 +17,10 @@ export class MemberCredentialsDto {
     @IsNotEmpty()
     memberPw: string;
 
+    @IsNotEmpty()
+    memberEmail: string;
+
+    @IsNotEmpty()
+    memberBoss: string;
+
 }
