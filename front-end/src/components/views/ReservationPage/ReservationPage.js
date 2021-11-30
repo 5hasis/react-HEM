@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {reservationUser} from '../../../_actions/user_action';
 
@@ -19,6 +19,14 @@ function ReservationPage(props) {
     const [RvNumber, setRvNumber] = useState(1)
     const [RvState, setRvState] = useState("승인 준비")
 
+    useEffect(() => {
+        if (Phone.length === 10) {
+          setPhone(Phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+        }
+        if (Phone.length === 13) {
+          setPhone(Phone.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+        }
+      }, [Phone]);
 
     const onNameHandler=(event)=>{
         setName(event.currentTarget.value)
