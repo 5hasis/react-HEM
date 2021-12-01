@@ -37,8 +37,8 @@ function FindPwPage() {
             display: 'flex', justifyContent: 'center', alignItems: 'center'
             , width: '100%', height: '100vh'
         }}>
-            <form onSubmit={onSubmitForm}>
-                이름 입력 : <input type='text' value={name} name='to_name' onChange={onNameHandler}></input><br /><br />
+            <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitForm}>
+                이름 입력 : <input type='text' value={name} name='to_name' onChange={onNameHandler}></input><br />
                 이메일입력 : <input type='text' value={email} name='to_email' onChange={onEmailHandler}></input><br />
                 <button type="submit">비밀번호 찾기</button>
             </form>
