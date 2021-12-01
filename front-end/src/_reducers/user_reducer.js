@@ -1,6 +1,6 @@
 import {
 
-    LOGIN_USER,REGISTER_USER, UPDATE_USER,RESERVATION_USER, FIND_ID
+    LOGIN_USER,REGISTER_USER, UPDATE_USER,RESERVATION_USER, FIND_ID,UPDATE_PW
 
 } from '../_actions/types';
 
@@ -19,6 +19,10 @@ export default function(state = {}, action) {
         case UPDATE_USER:
             return {...state,member:action.payload}
           //  break;    
+        
+        case UPDATE_PW:
+            return {...state,member:action.payload}
+          //  break;  
 
         case RESERVATION_USER:
             return {...state,reservation:action.payload}
