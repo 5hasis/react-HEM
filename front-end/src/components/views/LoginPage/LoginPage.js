@@ -73,7 +73,7 @@ function LoginPage(props){
                 <div style={{ display: 'flex', flexDirection: 'row',justifyContent: 'center', marginTop:'1rem' }}>
                 <a href={'/login/findid'} style={{color:'black'}}>아이디 찾기</a>
                 &nbsp;|&nbsp;
-                <a style={{color:'black'}}>비밀번호 찾기</a>
+                <a href={'/login/findpw'} style={{color:'black'}}>비밀번호 찾기</a>
                 </div>
             </form>
             

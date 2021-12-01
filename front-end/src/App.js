@@ -25,6 +25,8 @@ import OrderDetailPage from "./components/views/RestaurantPage/OrderDetailPage";
 import MyRestaurantReservationDetail from "./components/views/RestaurantPage/MyRestaurantReservationDetail";
 import FindIdPage from "./components/views/LoginPage/FindIdPage";
 import DeleteRestaurantSuccess from "./components/views/RestaurantPage/DeleteRestaurantSuccess";
+import FindPwPage from "./components/views/LoginPage/FindPwPage";
+import NewPwPage from "./components/views/LoginPage/NewPwPage";
 
 
 
@@ -51,6 +53,9 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/login/findid" component={FindIdPage} />
+          <Route exact path="/login/findpw" component={FindPwPage} />
+          <Route exact path="/login/newpw" component={NewPwPage} />
+          
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/registerSuccess" component={RegisterSuccessPage} />
           <Route exact path="/reservation/:restaurantNo" component={ReservationPage} />

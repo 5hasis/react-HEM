@@ -77,6 +77,13 @@ export class MemberController {
             return this.memberService.updateMember(memberUpdateDto,member);
         }
 
+    
+    @Patch('/newPassword')
+    updatePw(
+        @Body(ValidationPipe) memberFindDto : MemberFindDto): Promise<boolean> {
+            return this.memberService.updatePw(memberFindDto);
+        }
+
     // @Post('/test')
     // @UseGuards(AuthGuard()) 
     // test(@GetMember() member:Member) {

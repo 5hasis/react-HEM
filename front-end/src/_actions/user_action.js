@@ -3,7 +3,7 @@ import {
     REGISTER_USER,
     LOGIN_USER,
     RESERVATION_USER,
-    FIND_ID
+    FIND_ID,UPDATE_PW,UPDATE_USER
 } from './types';
 import Cookies from 'universal-cookie';
 //import { config } from "../config";
@@ -47,7 +47,17 @@ export function updateUser(dataToSubmit){
     const request=axios.patch('/api/member/update',dataToSubmit)
         .then(response=>response.data)
     return {
-        type:REGISTER_USER,
+        type:UPDATE_USER,
+        payload:request
+    }
+}
+
+export function updatePw(dataToSubmit){
+
+    const request=axios.patch('/api/member/newPassword',dataToSubmit)
+        .then(response=>response.data)
+    return {
+        type:UPDATE_PW,
         payload:request
     }
 }
