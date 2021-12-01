@@ -15,10 +15,12 @@ function FindPwPage() {
     const[AuthNum,setAuthNum] = useState("000000")
 
     function createRandom(){
-        setAuthNum(String(Math.floor(Math.random()*1000000)).padStart(6, "0"))
+        if(name && id && email) {
+            setAuthNum(String(Math.floor(Math.random()*1000000)).padStart(6, "0"))
+        }
     }
 
-console.log(AuthNum)
+    //console.log(AuthNum)
     const onEmailHandler = (e) => {
         setemail(e.currentTarget.value)
     }
@@ -80,10 +82,17 @@ console.log(AuthNum)
                 <button type="submit" onClick={createRandom}>인증번호 전송</button>
             </form>
 
-            <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onAuthSubmitForm}> 
-                인증번호 입력 : <input type='text' value={user_AuthNum} onChange={onUserAuthNumHandler}></input><br />
-                <button type="submit">새로운 비밀번호 생성</button>
-            </form>
+            {
+                parseInt(AuthNum) > 0?
+                
+                <form style={{ display: 'flex', flexDirection: 'column', marginLeft:'3rem' }} onSubmit={onAuthSubmitForm}> 
+                    인증번호 입력 : <input type='text' value={user_AuthNum} onChange={onUserAuthNumHandler}></input><br />
+                    <button type="submit">새로운 비밀번호 생성</button>
+                </form>
+                :
+                null
+            }
+            
         </div>
     )
 }
