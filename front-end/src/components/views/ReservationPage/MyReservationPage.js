@@ -45,7 +45,7 @@ function MyReservationPage() {
             <a href={`/myReservation/${reservation.reservationNo}/${reservation.member.memberNo}`}>
             <div style={{position:'relative', border:'1px solid rgb(232,232,232)',textAlign:'center', padding:'15px 0'}}>
                     <div style={{display: 'inline-block'}}>
-                        식당 이름: {reservation.member.memberName}<hr/>
+                        {reservation.member.memberName}<hr/>
                         예약 이름: {reservation.reservationName}<br/>
                         예약 날짜: {change_date(reservation.reservationDate)}<br/> 
                         예약 시간: {reservation.reservationTime}<br/>
@@ -60,7 +60,6 @@ function MyReservationPage() {
             
         </Col>
     })
-  
 
     return (
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',width:'100%',height:'100vh'}}>
