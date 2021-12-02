@@ -106,6 +106,16 @@ export class MemberService {
         
     }
 
+    async getMemberById(memberId:string) : Promise<Member>{
+        const result = this.memberRepository
+                            .createQueryBuilder('member')
+                            .where('member.memberId = :memberId', {memberId:memberId})
+                            .getOne();
+
+        return result;
+        
+    }
+
     async getMemberByName(memberName:string) : Promise<Member[]>{
         const result = this.memberRepository
                             .createQueryBuilder('member')
@@ -156,5 +166,26 @@ export class MemberService {
 
         return myInfo;
         
+    }
+
+    async updatePw(memberFindDto : MemberFindDto):Promise<boolean> {
+        const {             
+            memberPw, 
+            memberId
+             } = memberFindDto;
+
+        const salt = await bcrypt.genSalt();
+        const hashedPw = await bcrypt.hash(memberPw, salt);  
+        
+        const memberInfo = await this.memberRepository
+                            .createQueryBuilder('member')
+                            .update()
+                            .set({memberPw : hashedPw})
+                            .where('memberId = :memberId', {memberId})
+                            .execute();
+
+        console.log(memberInfo.affected)
+        if(memberInfo.affected === 1){return true}
+        else {return false}
     }
 }
