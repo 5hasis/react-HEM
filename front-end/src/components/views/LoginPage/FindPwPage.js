@@ -73,25 +73,30 @@ function FindPwPage() {
     return (
         <div style={{
             display: 'flex', justifyContent: 'center', alignItems: 'center'
-            , width: '100%', height: '100vh'
+            , width: '100%', height: '100vh', flexDirection: 'column'
         }}>
+            <div>
             <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onEmailSubmitForm}>
-                이름 입력 : <input type='text' value={name} name='to_name' onChange={onNameHandler}></input><br />
-                아이디 입력 : <input type='text' value={id} onChange={onIdHandler}></input><br />
-                이메일입력 : <input type='text' value={email} name='to_email' onChange={onEmailHandler}></input><br />
+                이름 입력  <input type='text' value={name} name='to_name' onChange={onNameHandler}></input>
+                아이디 입력  <input type='text' value={id} onChange={onIdHandler}></input>
+                이메일 입력  <input type='text' value={email} name='to_email' onChange={onEmailHandler}></input><br/>
                 <button type="submit" onClick={createRandom}>인증번호 전송</button>
             </form>
+            </div>
 
+            <div>
             {
                 parseInt(AuthNum) > 0?
                 
-                <form style={{ display: 'flex', flexDirection: 'column', marginLeft:'3rem' }} onSubmit={onAuthSubmitForm}> 
-                    인증번호 입력 : <input type='text' value={user_AuthNum} onChange={onUserAuthNumHandler}></input><br />
-                    <button type="submit">새로운 비밀번호 생성</button>
+                <form style={{ display: 'flex', flexDirection: 'column'}} onSubmit={onAuthSubmitForm}> 
+                    인증번호 입력  <input type='text' value={user_AuthNum} onChange={onUserAuthNumHandler}></input><br />
+                    <button type="submit">비밀번호 재설정</button>
                 </form>
+
                 :
                 null
             }
+            </div>
             
         </div>
     )
