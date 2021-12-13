@@ -184,7 +184,7 @@ export class MemberService {
                             .where('memberId = :memberId', {memberId})
                             .execute();
 
-        console.log(memberInfo.affected)
+        //console.log(memberInfo.affected)
         if(memberInfo.affected === 1){return true}
         else {return false}
     }
